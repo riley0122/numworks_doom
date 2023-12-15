@@ -3,6 +3,10 @@
 #include "palette.h"
 #include "eadk_vars.h"
 #include <stdbool.h>
+#include "renderer.h"
+#include "pos.h"
+#include "bsp.h"
+#include "player.h"
 
 int main(int argc, char *argv[])
 {
@@ -13,6 +17,6 @@ int main(int argc, char *argv[])
     while (running)
     {
         EADK::Keyboard::State kbdState = EADK::Keyboard::scan();
-        
+
     }
 }
