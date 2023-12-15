@@ -15,8 +15,7 @@ namespace player{
 
     class Velocity{
         public:
-            float pitch;
-            float yaw;
-            float strenght;
+            angular direction;
+            float strength;
     };
 } // namespace player
