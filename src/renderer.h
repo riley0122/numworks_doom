@@ -8,4 +8,4 @@ namespace renderer{
         angular rotation;
     };
     void render_quad(position points[4]);
-}
+} // namespace renderer
