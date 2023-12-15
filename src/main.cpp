@@ -13,6 +13,6 @@ int main(int argc, char *argv[])
     while (running)
     {
         EADK::Keyboard::State kbdState = EADK::Keyboard::scan();
-        running = !kbdState.keyDown(EADK::Keyboard::Key::Home);
+        
     }
 }

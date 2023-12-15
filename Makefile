@@ -13,6 +13,7 @@ endef
 src = $(addprefix src/,\
   main.cpp \
   eadk_vars.cpp \
+  player.cpp \
 )
 
 CPPFLAGS = -std=c++11 -fno-exceptions
