@@ -1,11 +1,10 @@
 #pragma once
+#include "pos.h"
 
 namespace player{
     class player{
     public:
-        float x;
-        float y;
-        float z;
+        position pos;
         void applyVelocity(Velocity velo);
         Velocity getVelocity();
     private:
