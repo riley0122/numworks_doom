@@ -6,3 +6,9 @@ struct position
     float y;
     float z;
 };
+
+struct angular
+{
+    float pitch;
+    float yaw;
+};
