@@ -1,0 +1,49 @@
+name: Build
+
+on:
+  release:
+    types:
+      - created
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@main
+
+      - name: Install npm and nwlink
+        run: npm install -g nwlink@0.0.16
+
+      - name: Set up ARM GCC tools
+        run: |
+          wget "https://developer.arm.com/-/media/Files/downloads/gnu-rm/10.3-2021.10/gcc-arm-none-eabi-10.3-2021.10-x86_64-linux.tar.bz2"
+          tar -jxf gcc-arm-none-eabi-10.3-2021.10-x86_64-linux.tar.bz2
+          rm gcc-arm-none-eabi-10.3-2021.10-x86_64-linux.tar.bz2
+          echo "/opt/gcc-arm-none-eabi-10.3-2021.10/bin" >> $GITHUB_PATH
+          echo "PATH=$PATH"  # Print the current PATH for debugging
+
+      - name: Build application
+        run: |
+          make build
+          if [ $? -ne 0 ]; then
+            echo "Build failed"
+            exit 1
+          fi
+
+      - name: Debug information
+        run: |
+          which arm-none-eabi-g++
+          ls -l /opt/gcc-arm-none-eabi-10.3-2021.10/bin
+          ls -l /opt/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-g++
+          echo "PATH=$PATH"
+
+
+      - name: Upload .bin and .nwa
+        uses: actions/upload-artifact@v3
+        with:
+          name: application
+          path: |
+            target/NAME.bin
+            target/NAME.nwa
