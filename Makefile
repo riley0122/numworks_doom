@@ -16,6 +16,7 @@ src = $(addprefix src/,\
   player.cpp \
   pos.h \
   renderer.cpp \
+  bsp.h \
 )
 
 CPPFLAGS = -std=c++11 -fno-exceptions
