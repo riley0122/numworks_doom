@@ -2,6 +2,11 @@
 #include "pos.h"
 
 namespace player{
+    typedef struct Velocity{
+        angular direction;
+        float strength;
+    } Velocity;
+
     class player{
     public:
         position pos;
@@ -11,11 +16,5 @@ namespace player{
         float Vx;
         float Vy;
         float Vz;
-    };
-
-    class Velocity{
-        public:
-            angular direction;
-            float strength;
     };
 } // namespace player

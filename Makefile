@@ -14,9 +14,7 @@ src = $(addprefix src/,\
   main.cpp \
   eadk_vars.cpp \
   player.cpp \
-  pos.h \
   renderer.cpp \
-  bsp.h \
 )
 
 CPPFLAGS = -std=c++11 -fno-exceptions
