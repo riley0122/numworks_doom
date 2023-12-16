@@ -14,17 +14,19 @@ int main(int argc, char *argv[])
 
     bool running = true;
 
+    renderer::Camera cam = renderer::Camera();
+    position camPos;
+    camPos.x = 0;
+    camPos.y = 0;
+    camPos.z = 0;
+    cam.pos = camPos;
+    angular camRot;
+    camRot.pitch = 0;
+    camRot.yaw = 0;
+    cam.rotation = camRot;
+
     while (running)
     {
-        renderer::Camera cam = renderer::Camera();
-        position camPos;
-        camPos.x = 0;
-        camPos.y = 0;
-        camPos.z = 0;
-        cam.pos = camPos;
-        angular camRot;
-        camRot.pitch = 0;
-        camRot.yaw = 0;
-        cam.rotation = camRot;
+        /* Nothing to do yet */
     }
 }
