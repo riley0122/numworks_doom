@@ -16,7 +16,15 @@ int main(int argc, char *argv[])
 
     while (running)
     {
-        EADK::Keyboard::State kbdState = EADK::Keyboard::scan();
-
+        renderer::Camera cam = renderer::Camera();
+        position camPos;
+        camPos.x = 0;
+        camPos.y = 0;
+        camPos.z = 0;
+        cam.pos = camPos;
+        angular camRot;
+        camRot.pitch = 0;
+        camRot.yaw = 0;
+        cam.rotation = camRot;
     }
 }
