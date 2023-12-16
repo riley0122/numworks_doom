@@ -7,5 +7,5 @@ namespace renderer{
         position pos;
         angular rotation;
     };
-    void render_quad(position points[4]);
+    void render_quad(position points[4], Camera target);
 } // namespace renderer
