@@ -33,3 +33,6 @@
 
 # Remove the target folder
 target
+
+# remove vscode
+.vscode
