@@ -7,26 +7,32 @@
 #include "pos.h"
 #include "bsp.h"
 #include "player.h"
+#include "eadkpp.h"
+#include "palette.h"
 
 int main(int argc, char *argv[])
 {
-    EADK::Display::pushRectUniform(EADK::Screen::Rect, Purple);
-
     bool running = true;
 
-    renderer::Camera cam = renderer::Camera();
-    position camPos;
-    camPos.x = 0;
-    camPos.y = 0;
-    camPos.z = 0;
-    cam.pos = camPos;
-    angular camRot;
-    camRot.pitch = 0;
-    camRot.yaw = 0;
-    cam.rotation = camRot;
+    renderer::Camera camera;
+    camera.pos = {0.0f, 0.0f, 0.0f};
+    camera.rotation = {0.0f, 0.0f};
+
+    position squarePoints[4] = {
+        {-10.0f, -10.0f, 0.0f},  // Top left
+        {10.0f, -10.0f, 0.0f},   // Top right
+        {10.0f, 10.0f, 0.0f},    // Bottom right
+        {-10.0f, 10.0f, 0.0f}    // Bottom left
+    };
 
     while (running)
     {
-        /* Nothing to do yet */
+        EADK::Display::pushRect(EADK::Screen::Full, &Black);
+
+        camera.rotation.yaw += 0.75f;
+
+        renderer::render_quad(squarePoints, camera);
+
+        EADK::Timing::msleep(16);
     }
 }

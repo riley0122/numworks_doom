@@ -4,5 +4,6 @@
 #include "eadkpp.h"
 
 constexpr static EADK::Color Purple(0x922BFF);
+constexpr static EADK::Color Black(0x000000);
 
 #endif
