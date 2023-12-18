@@ -56,7 +56,7 @@ namespace EADK
   {
     constexpr uint16_t Width = EADK_SCREEN_WIDTH;
     constexpr uint16_t Height = EADK_SCREEN_HEIGHT;
-    constexpr Rect Rect(0, 0, Width, Height);
+    constexpr Rect Full(0, 0, Width, Height);
   }
 
   namespace Display
