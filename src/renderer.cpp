@@ -60,6 +60,6 @@ namespace renderer
             static_cast<uint16_t>(transformedPoints[2].y - transformedPoints[0].y)
         );
 
-        EADK::Display::pushRect(rect, &Purple);
+        EADK::Display::pushRectUniform(rect, Purple);
     }
 } // namespace renderer

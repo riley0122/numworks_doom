@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
         EADK::Keyboard::State kbd = EADK::Keyboard::scan();
         running = !(kbd.keyDown(EADK::Keyboard::Key::Home) && kbd.keyDown(EADK::Keyboard::Key::Back));
 
-        EADK::Display::pushRect(EADK::Screen::Full, &Black);
+        EADK::Display::pushRectUniform(EADK::Screen::Full, Black);
 
         camera.rotation.pitch += 0.75f;
 
