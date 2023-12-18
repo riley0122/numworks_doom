@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
     {
         EADK::Display::pushRect(EADK::Screen::Full, &Black);
 
-        camera.rotation.yaw += 0.75f;
+        camera.rotation.pitch += 0.75f;
 
         renderer::render_quad(squarePoints, camera);
 
