@@ -33,8 +33,6 @@ int main(int argc, char *argv[])
 
         EADK::Display::pushRectUniform(EADK::Screen::Full, Black);
 
-        camera.rotation.pitch += 0.75f;
-
         renderer::render_quad(squarePoints, camera);
 
         EADK::Timing::msleep(16);
