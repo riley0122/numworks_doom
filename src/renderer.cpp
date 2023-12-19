@@ -43,8 +43,8 @@ namespace renderer
         position2D screenPoints[4];
         for (int i = 0; i < 4; i++)
         {
-           screenPoints[i].x = points[i].x / (points[i].z + 1);
-           screenPoints[i].y = points[i].y / (points[i].z + 1);
+           screenPoints[i].x = points[i].x / (points[i].z + 1 + target.pos.z) + target.pos.x;
+           screenPoints[i].y = points[i].y / (points[i].z + 1 + target.pos.z) + target.pos.y;
         }
 
         for (int i = 0; i < 4; i++)
