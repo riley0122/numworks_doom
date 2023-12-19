@@ -9,6 +9,7 @@
 #include "player.h"
 #include "eadkpp.h"
 #include "palette.h"
+#include <stdio.h>
 
 int main(int argc, char *argv[])
 {
@@ -44,7 +45,13 @@ int main(int argc, char *argv[])
         if(kbd.keyDown(EADK::Keyboard::Key::Up)){
             camera.pos.y += 3;
         }
-
+        if(kbd.keyDown(EADK::Keyboard::Key::Minus)){
+            camera.pos.z -= 0.05;
+        }
+        if(kbd.keyDown(EADK::Keyboard::Key::Plus)){
+            camera.pos.z += 0.05;
+        }
+        
         EADK::Display::pushRectUniform(EADK::Screen::Full, Black);
 
         renderer::render_quad(squarePoints, camera);
