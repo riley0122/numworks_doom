@@ -10,6 +10,8 @@
 #include "eadkpp.h"
 #include "palette.h"
 #include <stdio.h>
+#include "object.h"
+#include <stdlib.h>
 
 int main(int argc, char *argv[])
 {
@@ -18,20 +20,6 @@ int main(int argc, char *argv[])
     renderer::Camera camera;
     camera.pos = {0.0f, 0.0f, 0.0f};
     camera.rotation = {0.0f, 0.0f};
-
-    position squarePoints[4] = {
-        {50.0f, 50.0f, 0.0f}, // Top left
-        {80.0f, 50.0f, 0.0f}, // Top right
-        {80.0f, 80.0f, 0.0f}, // Bottom right
-        {50.0f, 80.0f, 0.0f}  // Bottom left
-    };
-
-    position secondSquarePoints[4] = {
-        {50.0f, 50.0f, -1.1f}, // Top left
-        {80.0f, 50.0f, -1.1f}, // Top right
-        {80.0f, 80.0f, -1.1f}, // Bottom right
-        {50.0f, 80.0f, -1.1f}  // Bottom left
-    };
 
     while (running)
     {
@@ -67,11 +55,10 @@ int main(int argc, char *argv[])
 
         EADK::Display::pushRectUniform(EADK::Screen::Full, Black);
 
-        position2D *firstScreenPoints = renderer::render_quad(squarePoints, camera);
-        position2D *secondScreenPoints = renderer::render_quad(secondSquarePoints, camera);
-
-        position2D points[] = {{100, 100}, {200, 200}};
-        renderer::render_line(points, camera, Purple);
+        object::cuboid cube = object::cuboid({0, 0, 0}, {10, 10, 1}, {0, 0}, &camera);
+        position2D **projected = cube.draw_points();
+        cube.draw_wireframe(projected);
+        free(projected);
 
         EADK::Timing::msleep(16);
     }

@@ -1,6 +1,7 @@
 #include "object.h"
 #include "renderer.h"
 #include "palette.h"
+#include <stdlib.h>
 
 namespace object
 {
@@ -39,7 +40,10 @@ namespace object
         position2D *backProjection = renderer::render_quad(backSquare, *this->renderTarget);
         position2D *frontProjection = renderer::render_quad(frontSquare, *this->renderTarget);
 
-        position2D *bothProjections[] = {backProjection, frontProjection};
+        position2D **bothProjections;
+        bothProjections = (position2D **)malloc(3 * sizeof(position2D *));
+        bothProjections[0] = backProjection;
+        bothProjections[1] = frontProjection;
 
         return bothProjections;
     }
