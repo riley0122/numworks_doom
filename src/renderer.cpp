@@ -89,8 +89,8 @@ namespace renderer
             if (screenPoints[i].x < 0 || screenPoints[i].x > EADK::Screen::Width || screenPoints[i].y < 0 || screenPoints[i].y > EADK::Screen::Height)
                 continue;
             EADK::Rect point(
-                screenPoints[i].x,
-                screenPoints[i].y,
+                screenPoints[i].x - 2,
+                screenPoints[i].y - 2,
                 5, 5);
             EADK::Display::pushRectUniform(point, White);
         }
