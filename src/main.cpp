@@ -20,17 +20,17 @@ int main(int argc, char *argv[])
     camera.rotation = {0.0f, 0.0f};
 
     position squarePoints[4] = {
-        {50.0f, 50.0f, 0.0f},  // Top left
-        {80.0f, 50.0f, 0.0f},   // Top right
-        {80.0f, 80.0f, 0.0f},    // Bottom right
-        {50.0f, 80.0f, 0.0f}    // Bottom left
+        {50.0f, 50.0f, 0.0f}, // Top left
+        {80.0f, 50.0f, 0.0f}, // Top right
+        {80.0f, 80.0f, 0.0f}, // Bottom right
+        {50.0f, 80.0f, 0.0f}  // Bottom left
     };
 
     position secondSquarePoints[4] = {
-        {50.0f, 50.0f, -1.1f},  // Top left
-        {80.0f, 50.0f, -1.1f},   // Top right
-        {80.0f, 80.0f, -1.1f},    // Bottom right
-        {50.0f, 80.0f, -1.1f}    // Bottom left
+        {50.0f, 50.0f, -1.1f}, // Top left
+        {80.0f, 50.0f, -1.1f}, // Top right
+        {80.0f, 80.0f, -1.1f}, // Bottom right
+        {50.0f, 80.0f, -1.1f}  // Bottom left
     };
 
     while (running)
@@ -40,22 +40,28 @@ int main(int argc, char *argv[])
         running = !(kbd.keyDown(EADK::Keyboard::Key::Home) && kbd.keyDown(EADK::Keyboard::Key::Back));
 
         // Basic camera controlls
-        if(kbd.keyDown(EADK::Keyboard::Key::Left)){
+        if (kbd.keyDown(EADK::Keyboard::Key::Left))
+        {
             camera.pos.x -= 3;
         }
-        if(kbd.keyDown(EADK::Keyboard::Key::Right)){
+        if (kbd.keyDown(EADK::Keyboard::Key::Right))
+        {
             camera.pos.x += 3;
         }
-        if(kbd.keyDown(EADK::Keyboard::Key::Down)){
+        if (kbd.keyDown(EADK::Keyboard::Key::Down))
+        {
             camera.pos.y -= 3;
         }
-        if(kbd.keyDown(EADK::Keyboard::Key::Up)){
+        if (kbd.keyDown(EADK::Keyboard::Key::Up))
+        {
             camera.pos.y += 3;
         }
-        if(kbd.keyDown(EADK::Keyboard::Key::Minus)){
+        if (kbd.keyDown(EADK::Keyboard::Key::Minus))
+        {
             camera.pos.z -= 0.05;
         }
-        if(kbd.keyDown(EADK::Keyboard::Key::Plus)){
+        if (kbd.keyDown(EADK::Keyboard::Key::Plus))
+        {
             camera.pos.z += 0.05;
         }
 
