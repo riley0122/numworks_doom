@@ -67,8 +67,11 @@ int main(int argc, char *argv[])
 
         EADK::Display::pushRectUniform(EADK::Screen::Full, Black);
 
-        renderer::render_quad(squarePoints, camera);
-        renderer::render_quad(secondSquarePoints, camera);
+        position2D *firstScreenPoints = renderer::render_quad(squarePoints, camera);
+        position2D *secondScreenPoints = renderer::render_quad(secondSquarePoints, camera);
+
+        position2D points[] = {{100, 100}, {200, 200}};
+        renderer::render_line(points, camera, Purple);
 
         EADK::Timing::msleep(16);
     }
