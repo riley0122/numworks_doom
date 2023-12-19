@@ -100,36 +100,16 @@ namespace renderer
 
     void render_line(position2D points[2], Camera target, EADK::Color colour)
     {
-        float Dx = renderingMaths::abs(points[1].x - points[0].x);
-        float Sx = points[0].x < points[1].x ? 1 : -1;
+        float Dx = points[1].x - points[0].x;
+        float Dy = points[1].y - points[0].y;
 
-        float Dy = -1 * renderingMaths::abs(points[1].y - points[1].y);
-        float Sy = points[0].y < points[1].y ? 1 : -1;
-
-        float error = Dx + Dy;
-
-        position2D currentPos[2] = {{points[0].x, points[0].y}, {points[1].x, points[1].y}};
-        while (true)
+        if (points[0].x < points[1].x)
         {
-            EADK::Display::pushRectUniform(EADK::Rect(currentPos[0].x, currentPos[0].y, 2, 2), colour);
-            if (currentPos[0].x == currentPos[1].x && currentPos[1].x == currentPos[1].y)
-                break;
-
-            float e2 = 2 * error;
-            if (e2 >= Dy)
+            float y;
+            for (int x = renderingMaths::floor(points[0].x); x < renderingMaths::floor(points[1].x); x++)
             {
-                if (currentPos[0].x == currentPos[1].x)
-                    break;
-                error += Dy;
-                currentPos[0].x += Sx;
-            }
-
-            if (e2 <= Dx)
-            {
-                if (currentPos[0].y == currentPos[1].y)
-                    break;
-                error += Dx;
-                currentPos[0].y += Sy;
+                y = points[0].y + Dy * (x - points[0].x) / Dx;
+                EADK::Display::pushRectUniform(EADK::Rect(x, y, 1, 1), colour);
             }
         }
     }
