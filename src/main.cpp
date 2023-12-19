@@ -21,6 +21,8 @@ int main(int argc, char *argv[])
     camera.pos = {0.0f, 0.0f, 0.0f};
     camera.rotation = {0.0f, 0.0f};
 
+    float camspeed = 0.05;
+
     while (running)
     {
         // exit condition
@@ -46,11 +48,13 @@ int main(int argc, char *argv[])
         }
         if (kbd.keyDown(EADK::Keyboard::Key::Minus))
         {
-            camera.pos.z -= 0.05;
+            camera.pos.z -= camspeed;
+            camspeed -= 0.01 * camspeed;
         }
         if (kbd.keyDown(EADK::Keyboard::Key::Plus))
         {
-            camera.pos.z += 0.05;
+            camera.pos.z += camspeed;
+            camspeed = 0.05;
         }
 
         EADK::Display::pushRectUniform(EADK::Screen::Full, Black);
