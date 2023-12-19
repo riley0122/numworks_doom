@@ -54,7 +54,7 @@ namespace renderer
                 screenPoints[i].y,
                 5,5
             );
-            EADK::Display::pushRectUniform(point, Whites);
+            EADK::Display::pushRectUniform(point, White);
         }
         
     }
