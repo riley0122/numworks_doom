@@ -66,6 +66,11 @@ namespace renderingMaths
             return (int(number) - 1);
         }
     }
+
+    float abs(float number)
+    {
+        return number >= 0 ? number : -1 * number;
+    }
 } // renderingMaths
 
 namespace renderer
@@ -93,21 +98,37 @@ namespace renderer
 
     void render_line(position2D points[2], Camera target, EADK::Color colour)
     {
-        int Dx = points[0].x > points[1].x ? points[0].x - points[1].x : points[1].x - points[0].x;
-        int Dy = points[0].y > points[1].y ? points[0].y - points[1].y : points[1].y - points[0].y;
+        float Dx = renderingMaths::abs(points[1].x - points[0].x);
+        float Sx = points[0].x < points[1].x ? 1 : -1;
 
-        float length = renderingMaths::sqrt(renderingMaths::pow(Dx, 2) + renderingMaths::pow(Dy, 2));
-        int steps = renderingMaths::floor(length / 5);
+        float Dy = -1 * renderingMaths::abs(points[1].y - points[1].y);
+        float Sy = points[0].y < points[1].y ? 1 : -1;
 
-        float unitWidth = Dx / steps;
-        float unitHeight = Dy / steps;
+        float error = Dx + Dy;
 
-        int horizontalStepSize = renderingMaths::floor(Dx / steps);
-        int verticalStepSize = renderingMaths::floor(Dy / steps);
-
-        for (int i = 0; i < steps; i++)
+        position2D currentPos[2] = {{points[0].x, points[0].y}, {points[1].x, points[1].y}};
+        while (true)
         {
-            EADK::Display::pushRectUniform(EADK::Rect(points[0].x > points[1].x ? points[0].x : points[1].x + i * horizontalStepSize, points[0].y > points[1].y ? points[0].y : points[1].y + i * verticalStepSize, unitWidth, unitHeight), colour);
+            EADK::Display::pushRectUniform(EADK::Rect(currentPos[0].x, currentPos[0].y, 2, 2), colour);
+            if (currentPos[0].x == currentPos[1].x && currentPos[1].x == currentPos[1].y)
+                break;
+
+            float e2 = 2 * error;
+            if (e2 >= Dy)
+            {
+                if (currentPos[0].x == currentPos[1].x)
+                    break;
+                error += Dy;
+                currentPos[0].x += Sx;
+            }
+
+            if (e2 <= Dx)
+            {
+                if (currentPos[0].y == currentPos[1].y)
+                    break;
+                error += Dx;
+                currentPos[0].y += Sy;
+            }
         }
     }
 } // namespace renderer
