@@ -70,9 +70,9 @@ namespace renderingMaths
 
 namespace renderer
 {
-    void render_quad(position points[4], Camera target)
+    position2D *render_quad(position points[4], Camera target)
     {
-        position2D screenPoints[4];
+        static position2D screenPoints[4];
         for (int i = 0; i < 4; i++)
         {
             screenPoints[i].x = points[i].x / (points[i].z + 1 + target.pos.z) - target.pos.x;
@@ -87,6 +87,8 @@ namespace renderer
                 5, 5);
             EADK::Display::pushRectUniform(point, White);
         }
+
+        return screenPoints;
     }
 
     void render_line(position2D points[2], Camera target, EADK::Color colour)
