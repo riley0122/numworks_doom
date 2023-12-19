@@ -40,6 +40,22 @@ namespace renderingMaths{
 namespace renderer
 {
     void render_quad(position points[4], Camera target){
+        position2D screenPoints[4];
+        for (int i = 0; i < 4; i++)
+        {
+           screenPoints[i].x = points[i].x / (points[i].z + 1);
+           screenPoints[i].y = points[i].y / (points[i].z + 1);
+        }
+
+        for (int i = 0; i < 4; i++)
+        {
+            EADK::Rect point(
+                screenPoints[i].x,
+                screenPoints[i].y,
+                5,5
+            );
+            EADK::Display::pushRectUniform(point, Whites);
+        }
         
     }
 } // namespace renderer
