@@ -19,10 +19,10 @@ int main(int argc, char *argv[])
     camera.rotation = {0.0f, 0.0f};
 
     position squarePoints[4] = {
-        {-10.0f, -10.0f, 0.0f},  // Top left
-        {10.0f, -10.0f, 0.0f},   // Top right
-        {10.0f, 10.0f, 0.0f},    // Bottom right
-        {-10.0f, 10.0f, 0.0f}    // Bottom left
+        {50.0f, 50.0f, 0.0f},  // Top left
+        {80.0f, 50.0f, 0.0f},   // Top right
+        {80.0f, 80.0f, 0.0f},    // Bottom right
+        {50.0f, 80.0f, 0.0f}    // Bottom left
     };
 
     while (running)
@@ -30,6 +30,20 @@ int main(int argc, char *argv[])
         // exit condition
         EADK::Keyboard::State kbd = EADK::Keyboard::scan();
         running = !(kbd.keyDown(EADK::Keyboard::Key::Home) && kbd.keyDown(EADK::Keyboard::Key::Back));
+
+        // Basic camera controlls
+        if(kbd.keyDown(EADK::Keyboard::Key::Left)){
+            camera.pos.x -= 3;
+        }
+        if(kbd.keyDown(EADK::Keyboard::Key::Right)){
+            camera.pos.x += 3;
+        }
+        if(kbd.keyDown(EADK::Keyboard::Key::Down)){
+            camera.pos.y -= 3;
+        }
+        if(kbd.keyDown(EADK::Keyboard::Key::Up)){
+            camera.pos.y += 3;
+        }
 
         EADK::Display::pushRectUniform(EADK::Screen::Full, Black);
 
