@@ -113,7 +113,8 @@ namespace renderer
             }
         }else {
             float y;
-            for(int x = renderingMaths::floor(points[1].x); x < renderingMaths::floor(points[0].x); x++){
+            for(int x = renderingMaths::floor(points[1].x); x < renderingMaths::floor(points[0].x); x++)
+            {
                 y = points[1].y + Dy * (x - points[1].x) / Dx;
                 EADK::Display::pushRectUniform(EADK::Rect(x, y, 1, 1), colour);
             }
