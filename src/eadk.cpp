@@ -63,8 +63,6 @@ uint64_t eadk_timing_millis(){
     std::cout << "[eadk.cpp] eadk_timing_millis() called" << std::endl;
     return 1;
 };
-extern const char *eadk_external_data;
-extern size_t eadk_external_data_size;
 bool eadk_usb_is_plugged(){
     std::cout << "[eadk.cpp] eadk_usb_is_plugged() called" << std::endl;
     return false;
