@@ -32,7 +32,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          body_path: .github/releaseBody.txt
+          body: "To upload to your calculator, go to [my.numworks.com/apps](https://my.numworks.com/apps) and upload DOOM.nwa\n\n"
           generate_release_notes: true
           files: |
             target/DOOM.nwa
