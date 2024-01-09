@@ -1,4 +1,4 @@
-[![Build](https://github.com/riley0122/numworks_template_cpp/actions/workflows/main.yml/badge.svg)](https://github.com/riley0122/numworks_template_cpp/actions/workflows/main.yml)
+[![Build](https://github.com/riley0122/numworks_doom/actions/workflows/build.yml/badge.svg)](https://github.com/riley0122/numworks_doom/actions/workflows/build.yml)
 # numworks DOOM
 
 This is a simple DOOM clone made from scratch for the Numworks calculator.
