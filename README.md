@@ -1,13 +1,11 @@
 [![Build](https://github.com/riley0122/numworks_template_cpp/actions/workflows/main.yml/badge.svg)](https://github.com/riley0122/numworks_template_cpp/actions/workflows/main.yml)
-# C++ Numworks Development template
+# numworks DOOM
 
-This is a template to start developing for the [Numworks](https://www.numworks.com/) graphing calculator.
-
-This template was reverse-engineered from the [Numworks C++ sample project](https://github.com/numworks/epsilon-sample-app-cpp).
+This is a simple DOOM clone made from scratch for the Numworks calculator.
 
 ## Building
 
-To build the app, you need to have node.js installed and GCC, also you will need the embedded ARM toolchain and the nwlink nodejs package. You might also need other dependencies, In case you need another dependency: please [open an issue](https://github.com/riley0122/numworks_template_cpp/issues/new).
+you need to have the dependencies installed to build, you could also [downlaod the latest version from releases](https://github.com/riley0122/numworks_doom/releases/latest), and then upload it to your calculator on [my.numworks.com/apps](https://my.numworks.com/apps].
 
 You can build the app by running
 `

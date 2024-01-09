@@ -1,0 +1,37 @@
+name: Build
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@main
+
+
+      - name: Set up ARM GCC tools
+        uses: carlosperate/arm-none-eabi-gcc-action@v1
+
+      - name: Install nwlink
+        run: npm install -g nwlink@0.0.16
+
+      - name: Build application
+        run: |
+          make build
+          if [ $? -ne 0 ]; then
+            echo "Build failed"
+            exit 1
+          fi
+
+      - name: Debug information
+        run: |
+          which arm-none-eabi-g++
+          ls -l /opt/gcc-arm-none-eabi-10.3-2021.10/bin
+          ls -l /opt/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-g++
+          echo "PATH=$PATH"
+
+
+      - name: verify existance
+        run: ls target
