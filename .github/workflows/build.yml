@@ -24,14 +24,3 @@ jobs:
             echo "Build failed"
             exit 1
           fi
-
-      - name: Debug information
-        run: |
-          which arm-none-eabi-g++
-          ls -l /opt/gcc-arm-none-eabi-10.3-2021.10/bin
-          ls -l /opt/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-g++
-          echo "PATH=$PATH"
-
-
-      - name: verify existance
-        run: ls target
