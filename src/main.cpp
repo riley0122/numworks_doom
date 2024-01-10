@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
     {
         // exit condition
         EADK::Keyboard::State kbd = EADK::Keyboard::scan();
-        running = !(kbd.keyDown(EADK::Keyboard::Key::Home) && kbd.keyDown(EADK::Keyboard::Key::Back));
+        running = !kbd.keyDown(EADK::Keyboard::Key::Power);
 
         EADK::Display::pushRectUniform(EADK::Screen::Full, Black);
 
