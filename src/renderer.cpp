@@ -3,7 +3,7 @@
 #include "eadkpp.h"
 #include "palette.h"
 
-#define FOCAL_LENGTH 50
+#define FOCAL_LENGTH 30
 
 namespace renderingMaths
 {
@@ -93,7 +93,7 @@ namespace renderer
     position2D project(position point, Camera target){
         renderingMaths::globalToRelative(&point, target);
         float projectedX = (point.x * FOCAL_LENGTH) / (point.z + FOCAL_LENGTH);
-        float projectedY = (point.y * FOCAL_LENGTH) / (point.y + FOCAL_LENGTH);
+        float projectedY = (point.y * FOCAL_LENGTH) / (point.z + FOCAL_LENGTH);
 
         // Move to center of screen
         projectedX += EADK::Screen::Width / 2;
@@ -102,7 +102,7 @@ namespace renderer
         return {projectedX, projectedY};
     }
 
-    position2D *render_quad(position points[4], Camera target)
+    position2D *render_quad(position points[4], Camera target, EADK::Color colour)
     {
         static position2D screenPoints[4];
         for (int i = 0; i < 4; i++)
@@ -118,7 +118,7 @@ namespace renderer
                 screenPoints[i].x - 1,
                 screenPoints[i].y - 1,
                 3, 3);
-            EADK::Display::pushRectUniform(point, White);
+            EADK::Display::pushRectUniform(point, colour);
         }
 
         return screenPoints;

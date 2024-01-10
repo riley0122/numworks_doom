@@ -37,8 +37,8 @@ namespace object
             {x + (width / 2), y + (Height / 2), z - (depth / 2)}  // bottom left
         };
 
-        position2D *backProjection = renderer::render_quad(backSquare, *this->renderTarget);
-        position2D *frontProjection = renderer::render_quad(frontSquare, *this->renderTarget);
+        position2D *backProjection = renderer::render_quad(backSquare, *this->renderTarget, Blue);
+        position2D *frontProjection = renderer::render_quad(frontSquare, *this->renderTarget, Purple);
 
         position2D **bothProjections;
         bothProjections = (position2D **)malloc(3 * sizeof(position2D *));
