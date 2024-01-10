@@ -94,6 +94,11 @@ namespace renderer
         renderingMaths::globalToRelative(&point, target);
         float projectedX = (point.x * FOCAL_LENGTH) / (point.z + FOCAL_LENGTH);
         float projectedY = (point.y * FOCAL_LENGTH) / (point.y + FOCAL_LENGTH);
+
+        // Move to center of screen
+        projectedX += EADK::Screen::Width / 2;
+        projectedY += EADK::Screen::Height / 2;
+
         return {projectedX, projectedY};
     }
 
