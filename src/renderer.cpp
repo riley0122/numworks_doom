@@ -77,10 +77,12 @@ namespace renderingMaths
     // conversion functions
 
     // convert from global coordinates to relative coordinates
-    position globalToRelative(position point, renderer::Camera target){
-        // For now just return the same points
-        return point;
-        // this will be where translation and rotation of the camera will be applied
+    void globalToRelative(position *point, renderer::Camera target){
+        position p = *point;
+
+        // TODO: Modify points based on position and rotation
+
+        *point = p;
     }
 
 } // renderingMaths
@@ -89,9 +91,9 @@ namespace renderer
 {
     // Project a single point
     position2D project(position point, Camera target){
-        position relativePoint = renderingMaths::globalToRelative(point, target);
-        float projectedX = (relativePoint.x * FOCAL_LENGTH) / (relativePoint.z + FOCAL_LENGTH);
-        float projectedY = (relativePoint.y * FOCAL_LENGTH) / (relativePoint.y + FOCAL_LENGTH);
+        renderingMaths::globalToRelative(&point, target);
+        float projectedX = (point.x * FOCAL_LENGTH) / (point.z + FOCAL_LENGTH);
+        float projectedY = (point.y * FOCAL_LENGTH) / (point.y + FOCAL_LENGTH);
         return {projectedX, projectedY};
     }
 
@@ -108,9 +110,9 @@ namespace renderer
             if (screenPoints[i].x < 0 || screenPoints[i].x > EADK::Screen::Width || screenPoints[i].y < 0 || screenPoints[i].y > EADK::Screen::Height)
                 continue;
             EADK::Rect point(
-                screenPoints[i].x - 2,
-                screenPoints[i].y - 2,
-                5, 5);
+                screenPoints[i].x - 1,
+                screenPoints[i].y - 1,
+                3, 3);
             EADK::Display::pushRectUniform(point, White);
         }
 
