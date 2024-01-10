@@ -1,5 +1,14 @@
 #pragma once
 
+struct position4D
+{
+    float x;
+    float y;
+    float z;
+    float w;
+};
+
+
 struct position
 {
     float x;
