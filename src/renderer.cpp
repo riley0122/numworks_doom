@@ -3,6 +3,8 @@
 #include "eadkpp.h"
 #include "palette.h"
 
+#define FOCAL_LENGTH 50
+
 namespace renderingMaths
 {
     float factorial(int n)
@@ -71,17 +73,34 @@ namespace renderingMaths
     {
         return number >= 0 ? number : -1 * number;
     }
+
+    // conversion functions
+
+    // convert from global coordinates to relative coordinates
+    position globalToRelative(position point, renderer::Camera target){
+        // For now just return the same points
+        return point;
+        // this will be where translation and rotation of the camera will be applied
+    }
+
 } // renderingMaths
 
 namespace renderer
 {
+    // Project a single point
+    position2D project(position point, Camera target){
+        position relativePoint = renderingMaths::globalToRelative(point, target);
+        float projectedX = (relativePoint.x * FOCAL_LENGTH) / (relativePoint.z + FOCAL_LENGTH);
+        float projectedY = (relativePoint.y * FOCAL_LENGTH) / (relativePoint.y + FOCAL_LENGTH);
+        return {projectedX, projectedY};
+    }
+
     position2D *render_quad(position points[4], Camera target)
     {
         static position2D screenPoints[4];
         for (int i = 0; i < 4; i++)
         {
-            screenPoints[i].x = points[i].x / (points[i].z + 1 + target.pos.z) - target.pos.x;
-            screenPoints[i].y = points[i].y / (points[i].z + 1 + target.pos.z) + target.pos.y;
+            screenPoints[i] = project(points[i], target);
         }
 
         for (int i = 0; i < 4; i++)
