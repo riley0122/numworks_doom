@@ -5,70 +5,41 @@
 
 namespace object
 {
-    cuboid::cuboid(position pos, position scale, angular rot, renderer::Camera *renderTarget)
+    cuboid::cuboid(position pos, position scale, angular rot, renderer::Camera *renderTarget) : pos(pos), scale(scale), rot(rot), renderTarget(renderTarget)
     {
-        this->pos = pos;
-        this->scale = scale;
-        this->rot = {0, 0};
-        // Rotation is not yet applied
-        this->renderTarget = renderTarget;
-    }
+        // ! Rotation is not yet applied !
 
-    position2D **cuboid::draw_points()
-    {
-        float x = this->pos.x;
-        float y = this->pos.y;
-        float z = this->pos.z;
-        float width = this->scale.x;
-        float Height = this->scale.y;
-        float depth = this->scale.z;
+        this->points = new position[8];
 
-        position frontSquare[4] = {
-            {x - (width / 2), y - (Height / 2), z + (depth / 2)}, // top left
-            {x + (width / 2), y - (Height / 2), z + (depth / 2)}, // top right
-            {x - (width / 2), y + (Height / 2), z + (depth / 2)}, // bottom right
-            {x + (width / 2), y + (Height / 2), z + (depth / 2)}  // bottom left
+        this->points = {
+            position{pos.x + (scale.x / 2), pos.y - (scale.y / 2), pos.z - (scale.z / 2)}, // top front right
+            position{pos.x - (scale.x / 2), pos.y - (scale.y / 2), pos.z - (scale.z / 2)}, // top front left
+            position{pos.x - (scale.x / 2), pos.y + (scale.y / 2), pos.z - (scale.z / 2)}, // bottom front right
+            position{pos.x + (scale.x / 2), pos.y + (scale.y / 2), pos.z - (scale.z / 2)}, // bottom front left
+            position{pos.x - (scale.x / 2), pos.y - (scale.y / 2), pos.z + (scale.z / 2)}, // top back left
+            position{pos.x + (scale.x / 2), pos.y - (scale.y / 2), pos.z + (scale.z / 2)}, // top back right
+            position{pos.x - (scale.x / 2), pos.y + (scale.y / 2), pos.z + (scale.z / 2)}, // bottom back right
+            position{pos.x + (scale.x / 2), pos.y + (scale.y / 2), pos.z + (scale.z / 2)}  // bottom back left
         };
 
-        position backSquare[4] = {
-            {x - (width / 2), y - (Height / 2), z - (depth / 2)}, // top left
-            {x + (width / 2), y - (Height / 2), z - (depth / 2)}, // top right
-            {x - (width / 2), y + (Height / 2), z - (depth / 2)}, // bottom right
-            {x + (width / 2), y + (Height / 2), z - (depth / 2)}  // bottom left
+        this->edges = {
+            vertex{0, 1}, vertex{0, 2}, vertex{0, 4},
+            vertex{1, 3}, vertex{1, 5},
+            vertex{2, 3}, vertex{2, 6},
+            vertex{4, 5}, vertex{4, 6},
+            vertex{5, 7},
+            vertex{6, 7}
         };
-
-        position2D *backProjection = renderer::render_quad(backSquare, *this->renderTarget, Blue);
-        position2D *frontProjection = renderer::render_quad(frontSquare, *this->renderTarget, Purple);
-
-        position2D **bothProjections;
-        bothProjections = (position2D **)malloc(3 * sizeof(position2D *));
-        bothProjections[0] = backProjection;
-        bothProjections[1] = frontProjection;
-
-        return bothProjections;
     }
 
-    void cuboid::draw_wireframe(position2D **projectionResult)
+    void cuboid::draw_wireframe()
     {
-        position2D *backProjection = projectionResult[0];
-        position2D *frontProjection = projectionResult[1];
-
-        for (int i = 1; i < 4; i++)
-        {
-            position2D selected[] = {backProjection[i], backProjection[i - 1]};
-            renderer::render_line(selected, *this->renderTarget, White);
-        }
-
-        for (int i = 1; i < 4; i++)
-        {
-            position2D selected[] = {frontProjection[i], frontProjection[i - 1]};
-            renderer::render_line(selected, *this->renderTarget, White);
-        }
-
-        for (int i = 1; i < 4; i++)
-        {
-            position2D selected[] = {frontProjection[i], backProjection[i]};
-            renderer::render_line(selected, *this->renderTarget, White);
+        for (int i = 0; i < 12; ++i){
+            vertex v = this->edges[i];
+            position2D start = renderer::project(this->points[v.start], *this->renderTarget);
+            position2D end = renderer::project(this->points[v.end], *this->renderTarget);
+            position2D points[2] = {start, end};
+            renderer::render_line(points, *this->renderTarget, White);
         }
     }
 } // namespace object

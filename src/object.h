@@ -2,6 +2,7 @@
 
 #include "pos.h"
 #include "renderer.h"
+#include <vector>
 
 namespace object
 {
@@ -15,14 +16,15 @@ namespace object
 
     public:
         cuboid(position pos, position scale, angular rot, renderer::Camera *renderTarget);
-        position2D **draw_points();
-        void draw_wireframe(position2D **projectionResult);
+        void draw_wireframe();
         void setX(float ammount);
         void setY(float ammount);
         void setZ(float ammount);
         void setDepth(float ammount);
         void setWidth(float ammount);
         void setHeight(float ammount);
+        std::vector<position> points;
+        std::vector<vertex> edges;
     };
 
 } // namespace object

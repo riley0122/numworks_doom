@@ -32,8 +32,7 @@ int main(int argc, char *argv[])
         EADK::Display::pushRectUniform(EADK::Screen::Full, Black);
 
         object::cuboid cube = object::cuboid({0, 0, 0}, {30, 30, 30}, {0, 0}, &camera);
-        position2D **projected = cube.draw_points();
-        free(projected);
+        // cube.draw_wireframe();
 
         EADK::Timing::msleep(16);
     }

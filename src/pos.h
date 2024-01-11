@@ -18,3 +18,9 @@ struct angular
     float pitch;
     float yaw;
 };
+
+struct vertex
+{
+    int start;
+    int end;
+};

@@ -10,6 +10,6 @@ namespace renderer
         position pos;
         angular rotation;
     };
-    position2D *render_quad(position points[4], Camera target, EADK::Color colour);
+    position2D project(position point, Camera target);
     void render_line(position2D points[2], Camera target, EADK::Color colour); // Renders a single 2D line
 } // namespace renderer

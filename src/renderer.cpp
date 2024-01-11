@@ -102,28 +102,6 @@ namespace renderer
         return {projectedX, projectedY};
     }
 
-    position2D *render_quad(position points[4], Camera target, EADK::Color colour)
-    {
-        static position2D screenPoints[4];
-        for (int i = 0; i < 4; i++)
-        {
-            screenPoints[i] = project(points[i], target);
-        }
-
-        for (int i = 0; i < 4; i++)
-        {
-            if (screenPoints[i].x < 0 || screenPoints[i].x > EADK::Screen::Width || screenPoints[i].y < 0 || screenPoints[i].y > EADK::Screen::Height)
-                continue;
-            EADK::Rect point(
-                screenPoints[i].x - 1,
-                screenPoints[i].y - 1,
-                3, 3);
-            EADK::Display::pushRectUniform(point, colour);
-        }
-
-        return screenPoints;
-    }
-
     void render_line(position2D points[2], Camera target, EADK::Color colour)
     {
         float Dx = points[1].x - points[0].x;
