@@ -24,6 +24,8 @@ int main(int argc, char *argv[])
 
     float camspeed = 0.05;
 
+    float rotation = 0;
+
     while (running)
     {
         // exit condition
@@ -63,16 +65,15 @@ int main(int argc, char *argv[])
 
         for (int i = 0; i < 12; ++i){
             vertex v = edges[i];
-            position2D start = renderer::project(points[v.start], camera);
-            position2D end = renderer::project(points[v.end], camera);
+            position startPoint = points[v.start];
+            position endPoint = points[v.end];
+            position2D start = renderer::project(renderingMaths::rotateX(startPoint, rotation), camera);
+            position2D end = renderer::project(renderingMaths::rotateX(endPoint, rotation), camera);
             position2D points[2] = {start, end};
-            EADK::Display::pushRectUniform(EADK::Rect(start.x -1 , start.y - 1, 3, 3), Blue);   // For debugging
-            EADK::Display::pushRectUniform(EADK::Rect(end.x -1 , end.y - 1, 3, 3), Purple); // For debugging
-            EADK::Timing::msleep(1000);     // For debugging
             renderer::render_line(points, camera, White);
-            EADK::Timing::msleep(1000);     // For debugging
         }
 
-        EADK::Timing::msleep(16);
+        rotation += 3;
+        EADK::Timing::msleep(33.3);
     }
 }

@@ -2,8 +2,11 @@
 #include "pos.h"
 #include "eadkpp.h"
 #include "palette.h"
+#include <stdlib.h>
 
 #define FOCAL_LENGTH 30
+#define PI 3.1415926535897932384650288
+#define TERMS 30
 
 namespace renderingMaths
 {
@@ -19,30 +22,42 @@ namespace renderingMaths
         }
     }
 
-    float pow(int base, int exp)
-    {
-        float result = 1.0f;
-        for (int i = 0; i < exp; i++)
-        {
-            result *= base;
+    float pow(int base, int exp) {
+        if(exp < 0) {
+            if(base == 0)
+                return -0;
+            return 1 / (base * pow(base, (-exp) - 1));
         }
-        return result;
+        if(exp == 0)
+            return 1;
+        if(exp == 1)
+            return base;
+        return base * pow(base, exp - 1);
     }
 
     // sin and cos are based on taylor series
-    float sin(float angle)
-    {
-        float result = 0.0f;
-        for (int i = 0; i < 10; i++)
-        {
-            result += (pow(-1, i) / factorial(2 * i + 1)) * pow(angle, 2 * i + 1);
+    float sin(int deg) {
+        deg %= 360; // make it less than 360
+        float rad = deg * PI / 180;
+        float sin = 0;
+
+        int i;
+        for(i = 0; i < TERMS; i++) {
+            sin += pow(-1, i) * pow(rad, 2 * i + 1) / factorial(2 * i + 1);
         }
-        return result;
+        return sin;
     }
 
-    float cos(float angle)
-    {
-        return sin(90 - angle);
+    float cos(int deg) {
+        deg %= 360; // make it less than 360
+        float rad = deg * PI / 180;
+        float cos = 0;
+
+        int i;
+        for(i = 0; i < TERMS; i++) {
+            cos += pow(-1, i) * pow(rad, 2 * i) / factorial(2 * i);
+        }
+        return cos;
     }
 
     float sqrt(float number)
@@ -80,9 +95,17 @@ namespace renderingMaths
     void globalToRelative(position *point, renderer::Camera target){
         position p = *point;
 
-        // TODO: Modify points based on position and rotation
+        // TODO: Modify points based on camera position and rotation
 
         *point = p;
+    }
+
+    position rotateX(position point, float angle){
+        position p;
+        p.y = (point.y * cos(angle)) - (sin(angle) * point.z);
+        p.z = (point.y * sin(angle)) + (cos(angle) * point.z);
+        p.x = point.x;
+        return p;
     }
 
 } // renderingMaths
@@ -115,6 +138,8 @@ namespace renderer
                 y = points[0].y + Dy * (x - points[0].x) / Dx;
                 EADK::Display::pushRectUniform(EADK::Rect(x, y, 1, 1), colour);
             }
+        }else if(Dx == 0){
+            EADK::Display::pushRectUniform(EADK::Rect(points[0].x, points[0].y < points[1].y ? points[0].y : points[1].y, 1, renderingMaths::abs(Dy)), colour);
         }else {
             float y;
             for(int x = renderingMaths::floor(points[1].x); x < renderingMaths::floor(points[0].x); x++)
