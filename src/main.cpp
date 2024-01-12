@@ -34,6 +34,14 @@ int main(int argc, char *argv[])
 
         EADK::Display::pushRectUniform(EADK::Screen::Full, Black);
 
+        EADK::Display::drawString("Prototype", EADK::Point(0,0), true, White, Black);
+
+        if(kbd.keyDown(EADK::Keyboard::Key::Up)){
+            rotation += 10;
+        }else if(kbd.keyDown(EADK::Keyboard::Key::Down)){
+            rotation -= 10;
+        }
+
         // object::cuboid cube = object::cuboid({0, 0, 0}, {30, 30, 30}, {0, 0}, &camera);
         // cube.draw_wireframe();
 
@@ -63,6 +71,9 @@ int main(int argc, char *argv[])
             vertex{6,7}
         };
 
+        position2D topLeft = renderer::project(renderingMaths::rotateX(points[0], rotation), camera);
+        EADK::Display::drawString("0", EADK::Point(topLeft.x, topLeft.y), false, White, Black);
+
         for (int i = 0; i < 12; ++i){
             vertex v = edges[i];
             position startPoint = points[v.start];
@@ -73,7 +84,7 @@ int main(int argc, char *argv[])
             renderer::render_line(points, camera, White);
         }
 
-        rotation += 3;
+        // rotation += 3;
         EADK::Timing::msleep(33.3);
     }
 }
