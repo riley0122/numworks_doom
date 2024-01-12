@@ -5,8 +5,8 @@
 #include <stdlib.h>
 
 #define FOCAL_LENGTH 30
-#define PI 3.1415926535897932384650288
-#define TERMS 30
+#define PI 3.141592653589793238462643383279502884197
+#define TERMS 10
 
 namespace renderingMaths
 {
