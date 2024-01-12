@@ -66,11 +66,11 @@ int main(int argc, char *argv[])
             position2D start = renderer::project(points[v.start], camera);
             position2D end = renderer::project(points[v.end], camera);
             position2D points[2] = {start, end};
-            EADK::Display::pushRectUniform(EADK::Rect(start.x -1 , start.y - 1, 3, 3), Blue);
-            EADK::Display::pushRectUniform(EADK::Rect(end.x -1 , end.y - 1, 3, 3), Purple);
-            EADK::Timing::msleep(1000);
+            EADK::Display::pushRectUniform(EADK::Rect(start.x -1 , start.y - 1, 3, 3), Blue);   // For debugging
+            EADK::Display::pushRectUniform(EADK::Rect(end.x -1 , end.y - 1, 3, 3), Purple); // For debugging
+            EADK::Timing::msleep(1000);     // For debugging
             renderer::render_line(points, camera, White);
-            EADK::Timing::msleep(1000);
+            EADK::Timing::msleep(1000);     // For debugging
         }
 
         EADK::Timing::msleep(16);
