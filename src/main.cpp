@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
             vertex{6,7}
         };
 
-        position2D topLeft = renderer::project(points[0], camera);
+        position2D topLeft = renderer::project(renderingMaths::rotateX(points[0], rotation), camera);
         EADK::Display::drawString("0", EADK::Point(topLeft.x, topLeft.y), false, White, Black);
 
         for (int i = 0; i < 12; ++i){
