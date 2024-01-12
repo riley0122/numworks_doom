@@ -5,11 +5,13 @@
 
 namespace object
 {
-    cuboid::cuboid(position pos, position scale, angular rot, renderer::Camera *renderTarget) : pos(pos), scale(scale), rot(rot), renderTarget(renderTarget)
+    cuboid::cuboid(position pos, position scale, angular rot, renderer::Camera *renderTarget)
     {
+        this->pos = pos;
+        this->scale = scale;
+        this->rot = rot;
+        this->renderTarget = renderTarget;
         // ! Rotation is not yet applied !
-
-        this->points = new position[8];
 
         this->points = {
             position{pos.x + (scale.x / 2), pos.y - (scale.y / 2), pos.z - (scale.z / 2)}, // top front right
