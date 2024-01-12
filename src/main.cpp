@@ -10,7 +10,6 @@
 #include "eadkpp.h"
 #include "palette.h"
 #include <stdio.h>
-// #include "object.h"
 #include <stdlib.h>
 #include <vector>
 #include <string>
