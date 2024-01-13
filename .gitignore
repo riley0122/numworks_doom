@@ -33,6 +33,7 @@
 
 # Remove the target folder
 target
+test/dist
 
 # remove vscode
 .vscode
