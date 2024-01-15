@@ -19,8 +19,14 @@ echo "Testing..."
 echo ====================
 echo
 
-./dist/DOOM
+TEST_RESULTS=$(./dist/DOOM)
+echo "$TEST_RESULTS"
 
 echo
 echo ====================
 echo "Finished testing"
+
+if [[ $TEST_RESULTS =~ "FAILED" ]]; then
+    echo "Some test failed!"
+    exit 1
+fi
