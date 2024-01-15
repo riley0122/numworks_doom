@@ -1,3 +1,4 @@
+#ifndef TEST
 #include "display.h"
 #include "eadkpp.h"
 #include "palette.h"
@@ -88,3 +89,29 @@ int main(int argc, char *argv[])
         EADK::Timing::msleep(33.3);
     }
 }
+
+#else
+#include "utest.h"
+#include <exception>
+
+#include "renderer.h"
+
+UTEST(renderingMaths, factorial) {
+    EXPECT_EQ(renderingMaths::factorial(1), 1);
+    EXPECT_EQ(renderingMaths::factorial(5), 120);
+    EXPECT_NE(renderingMaths::factorial(8), 12);
+    // EXPECT_EXCEPTION(renderingMaths::factorial(-12), std::out_of_range);
+}
+
+UTEST(renderingMaths, pow){
+    EXPECT_EQ(renderingMaths::pow(2, 3), 8);
+    EXPECT_EQ(renderingMaths::pow(5, 0), 1);
+    EXPECT_EQ(renderingMaths::pow(10, -1), 0.1f);
+    EXPECT_EQ(renderingMaths::pow(1.5, 2.5), 2.75567596063f);
+    EXPECT_EQ(renderingMaths::pow(10, 6), 1000000);
+    EXPECT_EQ(renderingMaths::pow(0, 0), 1);
+    EXPECT_EQ(renderingMaths::pow(0, 4), 0);
+}
+
+UTEST_MAIN();
+#endif

@@ -1,0 +1,14 @@
+name: Tests
+
+on: [push]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@main
+
+      - name: Build application
+        run: cd test && chmod +x ./test.sh && ./test.sh
