@@ -1,7 +1,14 @@
 #ifndef EADKPP_H
 #define EADKPP_H
 
+// native eadk library on calculator is in C the one we use as a replacement for desktop builds is in C++
+#ifdef DESTKTOP_BUILD
 #include "eadk.h"
+#else
+extern "C"{
+#include "eadk.h"
+}
+#endif
 
 namespace EADK
 {
