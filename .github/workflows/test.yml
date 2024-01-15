@@ -11,4 +11,4 @@ jobs:
         uses: actions/checkout@main
 
       - name: Build application
-        run: cd test && ./test.sh
+        run: cd test && chmod +x ./test.sh && ./test.sh
