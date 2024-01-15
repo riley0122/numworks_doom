@@ -4,7 +4,8 @@ echo "Building..."
 echo ====================
 echo
 
-./buildlocal.sh
+mkdir -p dist
+g++ -DDESTKTOP_BUILD -DTEST -std=c++11 -Wall -o dist/DOOM $(find ../src -name '*.cpp')
 
 echo
 echo ====================

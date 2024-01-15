@@ -1,3 +1,4 @@
+#ifndef TEST
 #include "display.h"
 #include "eadkpp.h"
 #include "palette.h"
@@ -88,3 +89,12 @@ int main(int argc, char *argv[])
         EADK::Timing::msleep(33.3);
     }
 }
+
+#else
+#include <iostream>
+
+int main(){
+    std::cout << "Starting DOOM in testing mode..." << std::endl;
+    return 0;
+}
+#endif
