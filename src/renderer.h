@@ -16,13 +16,6 @@ namespace renderer
 
 namespace renderingMaths
 {
-    float factorial(int n);
-    float pow(int base, int exp);
-    float sin(int angle);
-    float cos(int angle);
-    float sqrt(float number);
-    int floor(float number);
-    float abs(float number);
     void globalToRelative(position *point, renderer::Camera target);
     position rotateX(position point, float angle);
     void rotateY(position *point, float angle);

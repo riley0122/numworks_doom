@@ -52,7 +52,7 @@ $(BUILD_DIR)/%.bin: $(BUILD_DIR)/%.nwa
 
 $(BUILD_DIR)/DOOM.nwa: $(call object_for,$(src)) $(BUILD_DIR)/icon.o
 	@echo "LD      $@"
-	$(Q) $(CC) $(CPPFLAGS) $(LDFLAGS) $^ -o $@
+	$(Q) $(CC) $(CPPFLAGS) $(LDFLAGS) $^ -o $@ -lm
 
 $(addprefix $(BUILD_DIR)/,%.o): %.cpp | $(BUILD_DIR)
 	@echo "CXX     $^"
