@@ -18,6 +18,6 @@ namespace renderingMaths
 {
     void globalToRelative(position *point, renderer::Camera target);
     position rotateX(position point, float angle);
-    void rotateY(position *point, float angle);
-    void rotateZ(position *point, float angle);
+    position rotateY(position point, float angle);
+    position rotateZ(position point, float angle);
 } // namespace renderingMaths

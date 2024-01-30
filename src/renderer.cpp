@@ -29,6 +29,21 @@ namespace renderingMaths
         return p;
     }
 
+    position rotateY(position point, float angle){
+        position p;
+        p.x = (point.x * std::cos(angle)) + (point.z * std::sin(angle));
+        p.z = (point.x * -std::sin(angle)) + (point.z * std::cos(angle));
+        p.y = point.y;
+        return p;
+    }
+
+    position rotateZ(position point, float angle){
+        position p;
+        p.x = (point.x * std::cos(angle)) + (point.y * -std::sin(angle));
+        p.y = (point.x * std::sin(angle)) + (point.y * std::cos(angle));
+        p.z = point.z;
+        return p;
+    }
 } // renderingMaths
 
 namespace renderer
