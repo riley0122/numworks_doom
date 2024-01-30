@@ -100,9 +100,59 @@ int main(int argc, char *argv[])
 #else
 #include "utest.h"
 #include <exception>
-
+#include <cmath>
+#include <iostream>
 #include "renderer.h"
 
+// Rounds numbers to 3 decimal points
+float r(float number){
+    int value = std::round(number * 1000);
+    return (float)value / 1000;
+}
+
+UTEST(renderingMaths, globalRelativeConversion){
+    renderer::Camera camera;
+    camera.pos = {0,0,0};
+    camera.rotation = {0,0};
+
+    position point = { 1, 2, 3 };
+    renderingMaths::globalToRelative(&point, camera);
+
+    ASSERT_EQ(point.x, 1);
+    ASSERT_EQ(point.y, 2);
+    ASSERT_EQ(point.z, 3);
+
+    // Not yet Implemented.
+    camera.rotation.yaw += 10;
+    camera.rotation.pitch += 10;
+    // ASSERT_NE(point.x, 1);
+    // ASSERT_NE(point.y, 2);
+    // ASSERT_NE(point.x, 3);
+}
+
+UTEST(renderingMaths, rotation){
+    position point = {1, 2, 3};
+
+    // Validation data calculated with
+    // https://www.mathforengineers.com/math-calculators/3D-point-rotation-calculator.html
+
+    // 20 in radians == 1145.92 in degrees
+
+    position pointRotated = renderingMaths::rotateX(point, 20);
+    ASSERT_EQ(r(pointRotated.x), r(point.x));
+    ASSERT_EQ(r(pointRotated.y), -1.923f);
+    ASSERT_EQ(r(pointRotated.z), 3.050f);
+
+    pointRotated = renderingMaths::rotateY(point, 20);
+    ASSERT_EQ(r(pointRotated.x), 3.147f);
+    ASSERT_EQ(r(pointRotated.y), r(point.y));
+    ASSERT_EQ(r(pointRotated.z), 0.311f);
+
+    pointRotated = renderingMaths::rotateZ(point, 20);
+    ASSERT_EQ(r(pointRotated.x), -1.418f);
+    ASSERT_EQ(r(pointRotated.y), 1.729f);
+    ASSERT_EQ(r(pointRotated.z), r(point.z));
+}
 
 UTEST_MAIN();
 #endif
