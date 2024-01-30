@@ -26,6 +26,7 @@ int main(int argc, char *argv[])
     float camspeed = 0.05;
 
     float rotation = 0;
+    float secondaryRotation = 0;
 
     while (running)
     {
@@ -38,9 +39,15 @@ int main(int argc, char *argv[])
         EADK::Display::drawString("Prototype", EADK::Point(0,0), true, White, Black);
 
         if(kbd.keyDown(EADK::Keyboard::Key::Up)){
-            rotation += 10;
+            rotation += 0.1;
         }else if(kbd.keyDown(EADK::Keyboard::Key::Down)){
-            rotation -= 10;
+            rotation -= 0.1;
+        }
+
+        if(kbd.keyDown(EADK::Keyboard::Key::Left)){
+            secondaryRotation += 0.1;
+        }else if(kbd.keyDown(EADK::Keyboard::Key::Right)){
+            secondaryRotation -= 0.1;
         }
 
         // object::cuboid cube = object::cuboid({0, 0, 0}, {30, 30, 30}, {0, 0}, &camera);
@@ -72,15 +79,15 @@ int main(int argc, char *argv[])
             vertex{6,7}
         };
 
-        position2D topLeft = renderer::project(renderingMaths::rotateX(points[0], rotation), camera);
+        position2D topLeft = renderer::project(renderingMaths::rotateX(renderingMaths::rotateY(points[0], secondaryRotation), rotation), camera);
         EADK::Display::drawString("0", EADK::Point(topLeft.x, topLeft.y), false, White, Black);
 
         for (int i = 0; i < 12; ++i){
             vertex v = edges[i];
             position startPoint = points[v.start];
             position endPoint = points[v.end];
-            position2D start = renderer::project(renderingMaths::rotateX(startPoint, rotation), camera);
-            position2D end = renderer::project(renderingMaths::rotateX(endPoint, rotation), camera);
+            position2D start = renderer::project(renderingMaths::rotateX(renderingMaths::rotateY(startPoint, secondaryRotation), rotation), camera);
+            position2D end = renderer::project(renderingMaths::rotateX(renderingMaths::rotateY(endPoint, secondaryRotation), rotation), camera);
             position2D points[2] = {start, end};
             renderer::render_line(points, camera, White);
         }
