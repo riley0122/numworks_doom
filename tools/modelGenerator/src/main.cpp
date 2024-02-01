@@ -20,14 +20,14 @@ int main(int argc, char *argv[])
 
         std::string line;
 
-        std::vector<std::string> pointStrings;
-        std::vector<std::string> edgeStrings;
+        std::vector<point> points;
+        std::vector<std::string> edges;
 
         while(std::getline(inFile, line))
         {
             if(line[0] == 'v' && line[1] == ' ')
             {
-                pointStrings.push_back(line);
+                points.push_back(generatePoint(line));
                 std::cout << "Found point\n";
             }
         }
