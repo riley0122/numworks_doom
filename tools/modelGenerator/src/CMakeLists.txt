@@ -1,1 +1,1 @@
-add_executable(modelGenerator main.cpp)
+add_executable(modelGenerator main.cpp helper.cpp)
