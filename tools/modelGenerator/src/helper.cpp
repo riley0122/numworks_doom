@@ -21,6 +21,8 @@ std::vector<std::string> split(std::string string, char splitter)
         }
     }
 
+    result.push_back(subString);
+
     return result;
 }
 
