@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <cstdlib>
 
 std::vector<std::string> split(std::string string, char splitter);
 
@@ -12,3 +13,4 @@ struct point
     float z;
 };
 
+point generatePoint(std::string string);
