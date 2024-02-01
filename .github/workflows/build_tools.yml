@@ -1,0 +1,28 @@
+name: Build tools
+
+on: workflow_dispatch
+
+jobs:
+    modelGenerator:
+        runs-on: ubuntu-latest
+
+        env:
+            working-directory: ./tools/modelGenerator
+
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@main
+
+            - name: Update apt
+              run: apt-get -y update
+
+            - name: Get CMake
+              run: apt-get install cmake
+
+            - name: Generate build files
+              run: cmake -B build -S .
+              working-directory: ${{env.working-directory}}
+
+            - name: Build model generator
+              run: make
+              working-directory: ${{env.working-directory}}/build
