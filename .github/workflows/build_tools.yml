@@ -12,3 +12,14 @@ jobs:
         steps:
             - name: Checkout repo
               uses: actions/checkout@main
+
+            - name: Get CMake
+              run: apt-get install cmake
+
+            - name: Generate build files
+              run: cmake -B build -S .
+              working-directory: ${{env.working-directory}}
+
+            - name: Build model generator
+              run: make
+              working-directory: ${{env.working-directory}}/build
