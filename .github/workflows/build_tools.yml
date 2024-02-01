@@ -1,0 +1,14 @@
+name: Build tools
+
+on: workflow_dispatch
+
+jobs:
+    modelGenerator:
+        runs-on: ubuntu-latest
+
+        env:
+            working-directory: ./tools/modelGenerator
+
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@main
