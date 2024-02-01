@@ -13,6 +13,9 @@ jobs:
             - name: Checkout repo
               uses: actions/checkout@main
 
+            - name: Update apt
+              run: apt-get -y update
+
             - name: Get CMake
               run: apt-get install cmake
 
