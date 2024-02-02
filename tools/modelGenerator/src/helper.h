@@ -5,6 +5,9 @@
 #include <cstdlib>
 
 std::vector<std::string> split(std::string string, char splitter);
+// Append second vector to first vector
+template <typename T>
+void appendVectorToVector(std::vector<T> *first, std::vector<T> second);
 
 struct point
 {
