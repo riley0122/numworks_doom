@@ -15,6 +15,8 @@
 #include <vector>
 #include <string>
 
+#include "cube.h"
+
 int main(int argc, char *argv[])
 {
     bool running = true;
@@ -50,42 +52,12 @@ int main(int argc, char *argv[])
             secondaryRotation -= 0.1;
         }
 
-        // object::cuboid cube = object::cuboid({0, 0, 0}, {30, 30, 30}, {0, 0}, &camera);
-        // cube.draw_wireframe();
-
-        position points[8] = {
-            position{-15, 15, 15}, // top front left
-            position{15, 15, 15}, // top front right
-            position{-15, -15, 15}, // bottom front left
-            position{15, -15, 15}, // bottom front right
-            position{-15, 15, -15}, // top back left
-            position{15, 15, -15}, // top back right
-            position{-15, -15, -15}, // bottom back left
-            position{15, -15, -15}  // bottom back right
-        };
-
-        vertex edges[12] = {
-            vertex{0,1},
-            vertex{0,4},
-            vertex{0,2},
-            vertex{1,3},
-            vertex{1,5},
-            vertex{2,6},
-            vertex{3,7},
-            vertex{2,3},
-            vertex{4,5},
-            vertex{4,6},
-            vertex{5,7},
-            vertex{6,7}
-        };
-
-        position2D topLeft = renderer::project(renderingMaths::rotateX(renderingMaths::rotateY(points[0], secondaryRotation), rotation), camera);
+        position2D topLeft = renderer::project(renderingMaths::rotateX(renderingMaths::rotateY(Cube::points[0], secondaryRotation), rotation), camera);
         EADK::Display::drawString("0", EADK::Point(topLeft.x, topLeft.y), false, White, Black);
 
-        for (int i = 0; i < 12; ++i){
-            vertex v = edges[i];
-            position startPoint = points[v.start];
-            position endPoint = points[v.end];
+        for (vertex v : Cube::edges){
+            position startPoint = Cube::points[v.start];
+            position endPoint = Cube::points[v.end];
             position2D start = renderer::project(renderingMaths::rotateX(renderingMaths::rotateY(startPoint, secondaryRotation), rotation), camera);
             position2D end = renderer::project(renderingMaths::rotateX(renderingMaths::rotateY(endPoint, secondaryRotation), rotation), camera);
             position2D points[2] = {start, end};
