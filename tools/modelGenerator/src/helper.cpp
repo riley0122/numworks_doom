@@ -35,3 +35,24 @@ point generatePoint(std::string string){
 
     return point{x, y, z};
 }
+
+std::vector<vertex> generateEdgesFromFace(std::string faceString){
+    std::vector<std::string> splitted = split(faceString, ' ');
+    splitted.erase(splitted.begin());
+
+    std::vector<int> vertexes;
+
+    for (int i = 0; i < splitted.size(); i++)
+    {
+        vertexes.push_back(splitted[i][0] - '0');
+    }
+
+    std::vector<vertex> results;
+
+    for (int i = 0; i < vertexes.size() - 1; i++)
+    {
+        results.push_back(vertex{i, i + 1});
+    }
+
+    return results;
+}
