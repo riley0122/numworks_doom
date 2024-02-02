@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
         std::string line;
 
         std::vector<point> points;
-        std::vector<std::string> edges;
+        std::vector<vertex> edges;
 
         while(std::getline(inFile, line))
         {
@@ -29,6 +29,9 @@ int main(int argc, char *argv[])
             {
                 points.push_back(generatePoint(line));
                 std::cout << "Found point\n";
+            } else if (line[0] == 'f' && line[1] == ' ')
+            {
+                
             }
         }
 

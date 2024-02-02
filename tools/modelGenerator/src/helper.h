@@ -13,4 +13,11 @@ struct point
     float z;
 };
 
+struct vertex
+{
+    int from;
+    int to;
+};
+
 point generatePoint(std::string string);
+std::vector<vertex> generateEdgesFromFace(std::string faceString);
