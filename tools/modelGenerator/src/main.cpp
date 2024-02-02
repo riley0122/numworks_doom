@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
             {
                 std::vector<vertex> found = generateEdgesFromFace(line);
                 edges.insert(edges.end(), found.begin(), found.end());
-                std::cout << "Found face\n";
+                std::cout << "Found face with " << found.size() << " edges\n";
             }
         }
 
