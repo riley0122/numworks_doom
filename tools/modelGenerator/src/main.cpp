@@ -31,7 +31,8 @@ int main(int argc, char *argv[])
                 std::cout << "Found point\n";
             } else if (line[0] == 'f' && line[1] == ' ')
             {
-                // TODO: unwrap vector and append to edges
+                std::vector<vertex> found = generateEdgesFromFace(line);
+                edges.insert(edges.end(), found.begin(), found.end());
                 std::cout << "Found face\n";
             }
         }

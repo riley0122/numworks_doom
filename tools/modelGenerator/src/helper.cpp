@@ -26,14 +26,6 @@ std::vector<std::string> split(std::string string, char splitter)
     return result;
 }
 
-template <typename T>
-void appendVectorToVector(std::vector<T> *first, std::vector<T> second){
-    for (int i = 0; i < second.size(); i++)
-    {
-        *first->push_back(second[i]);
-    }
-}
-
 point generatePoint(std::string string){
     std::vector<std::string> values = split(string, ' ');
 
