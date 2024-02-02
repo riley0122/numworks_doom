@@ -51,10 +51,10 @@ std::vector<vertex> generateEdgesFromFace(std::string faceString){
 
     for (int i = 0; i < vertexes.size() - 1; i++)
     {
-        results.push_back(vertex{i, i + 1});
+        results.push_back(vertex{vertexes[i], vertexes[i + 1]});
     }
 
-    results.push_back(vertex{(int)vertexes.size(), 0});
+    results.push_back(vertex{vertexes[vertexes.size() - 1], vertexes[0]});
 
     return results;
 }
