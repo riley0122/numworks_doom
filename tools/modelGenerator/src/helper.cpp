@@ -4,6 +4,8 @@
 #include <vector>
 #include <cstdlib>
 
+#define SCALE 15
+
 std::vector<std::string> split(std::string string, char splitter)
 {
     std::vector<std::string> result;
@@ -29,9 +31,9 @@ std::vector<std::string> split(std::string string, char splitter)
 point generatePoint(std::string string){
     std::vector<std::string> values = split(string, ' ');
 
-    float x = atof(values[1].c_str());
-    float y = atof(values[2].c_str());
-    float z = atof(values[3].c_str());
+    float x = atof(values[1].c_str()) * SCALE;
+    float y = atof(values[2].c_str()) * SCALE;
+    float z = atof(values[3].c_str()) * SCALE;
 
     return point{x, y, z};
 }
