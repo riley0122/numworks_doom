@@ -54,5 +54,7 @@ std::vector<vertex> generateEdgesFromFace(std::string faceString){
         results.push_back(vertex{i, i + 1});
     }
 
+    results.push_back(vertex{(int)vertexes.size(), 0});
+
     return results;
 }
