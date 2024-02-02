@@ -71,6 +71,8 @@ int main(int argc, char *argv[])
 
         outFile << "\t" << "};\n";
 
+        outFile << "\n";
+
         outFile << "\t" << "vertex edges[" << edges.size() << "] = {\n";
 
         for (int i = 0; i < edges.size(); i++)

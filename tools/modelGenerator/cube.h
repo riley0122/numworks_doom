@@ -13,6 +13,7 @@ namespace Cube
 		position{-1.000,1.000,1.000},
 		position{-1.000,-1.000,1.000},
 	};
+
 	vertex edges[24] = {
 		vertex{0,1},
 		vertex{1,2},
