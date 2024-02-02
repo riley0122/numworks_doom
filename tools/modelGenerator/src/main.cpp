@@ -13,15 +13,15 @@ int main(int argc, char *argv[])
         return -1;
     }
 
+    std::vector<point> points;
+    std::vector<vertex> edges;
+
     std::fstream inFile(argv[1]);
     if(inFile.is_open())
     {
         std::cout << "Succesfully opened file " << argv[1] << "\n";
 
         std::string line;
-
-        std::vector<point> points;
-        std::vector<vertex> edges;
 
         while(std::getline(inFile, line))
         {
@@ -41,6 +41,19 @@ int main(int argc, char *argv[])
     } else
     {
         std::cout << "Failed to open " << argv[1] << ". Are you sure it exists?\n";
+        return 1;
+    }
+
+    std::cout << "Finished parsing " << argv[1] << " with " << points.size() << " points and " << edges.size() << " edges.\n";
+
+    std::ofstream outFile(argv[2]);
+    if(outFile.is_open())
+    {
+        outFile.close();
+    } else
+    {
+        std::cout << "Failed to create or open " << argv[2] << "!\n";
+        return 2;
     }
 
     return 0;
