@@ -18,7 +18,7 @@ jobs:
 
 
       - name: Set up ARM GCC tools
-        uses: carlosperate/arm-none-eabi-gcc-action@v1
+        uses: numworks/setup-arm-toolchain@latest
 
       - name: Install nwlink
         run: npm install -g nwlink@0.0.16
