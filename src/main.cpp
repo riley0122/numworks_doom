@@ -16,6 +16,8 @@
 #include <string>
 
 #include "cube.h"
+#include "cone.h"
+#include "suzanne.h"
 
 int main(int argc, char *argv[])
 {
@@ -29,6 +31,13 @@ int main(int argc, char *argv[])
 
     float rotation = 0;
     float secondaryRotation = 0;
+
+    /*
+        0 : cube                                    ; 8   points & 24   edges
+        1 : cone                                    ; 33  points & 128  edges
+        2 : suzanne (blender default monkey model)  ; 507 points & 1968 edges
+    */
+    int model = 0;
 
     while (running)
     {
@@ -52,17 +61,60 @@ int main(int argc, char *argv[])
             secondaryRotation -= 0.1;
         }
 
-        position2D topLeft = renderer::project(renderingMaths::rotateX(renderingMaths::rotateY(Cube::points[0], secondaryRotation), rotation), camera);
-        EADK::Display::drawString("0", EADK::Point(topLeft.x, topLeft.y), false, White, Black);
-
-        for (vertex v : Cube::edges){
-            position startPoint = Cube::points[v.start];
-            position endPoint = Cube::points[v.end];
-            position2D start = renderer::project(renderingMaths::rotateX(renderingMaths::rotateY(startPoint, secondaryRotation), rotation), camera);
-            position2D end = renderer::project(renderingMaths::rotateX(renderingMaths::rotateY(endPoint, secondaryRotation), rotation), camera);
-            position2D points[2] = {start, end};
-            renderer::render_line(points, camera, White);
+        if(kbd.keyDown(EADK::Keyboard::Key::One)){
+            model = 0;
+            rotation = 0;
+            secondaryRotation = 0;
+        }else if(kbd.keyDown(EADK::Keyboard::Key::Two)){
+            model = 1;
+            rotation = 0;
+            secondaryRotation = 0;
+        }else if(kbd.keyDown(EADK::Keyboard::Key::Three)){
+            model = 2;
+            rotation = 0;
+            secondaryRotation = 0;
         }
+
+        // position2D topLeft = renderer::project(renderingMaths::rotateX(renderingMaths::rotateY(Cube::points[0], secondaryRotation), rotation), camera);
+        // EADK::Display::drawString("0", EADK::Point(topLeft.x, topLeft.y), false, White, Black);
+
+        switch (model)
+        {
+        case 0:
+            for (vertex v : Cube::edges){
+                position startPoint = Cube::points[v.start];
+                position endPoint = Cube::points[v.end];
+                position2D start = renderer::project(renderingMaths::rotateX(renderingMaths::rotateY(startPoint, secondaryRotation), rotation), camera);
+                position2D end = renderer::project(renderingMaths::rotateX(renderingMaths::rotateY(endPoint, secondaryRotation), rotation), camera);
+                position2D points[2] = {start, end};
+                renderer::render_line(points, camera, White);
+            }
+            break;
+        case 1:
+            for (vertex v : Cone::edges){
+                position startPoint = Cone::points[v.start];
+                position endPoint = Cone::points[v.end];
+                position2D start = renderer::project(renderingMaths::rotateX(renderingMaths::rotateY(startPoint, secondaryRotation), rotation), camera);
+                position2D end = renderer::project(renderingMaths::rotateX(renderingMaths::rotateY(endPoint, secondaryRotation), rotation), camera);
+                position2D points[2] = {start, end};
+                renderer::render_line(points, camera, White);
+            }
+            break;
+        case 2:
+            for (vertex v : Suzanne::edges){
+                position startPoint = Suzanne::points[v.start];
+                position endPoint = Suzanne::points[v.end];
+                position2D start = renderer::project(renderingMaths::rotateX(renderingMaths::rotateY(startPoint, secondaryRotation), rotation), camera);
+                position2D end = renderer::project(renderingMaths::rotateX(renderingMaths::rotateY(endPoint, secondaryRotation), rotation), camera);
+                position2D points[2] = {start, end};
+                renderer::render_line(points, camera, White);
+            }
+        break;
+        default:
+            break;
+        }
+
+
 
         // rotation += 3;
         EADK::Timing::msleep(33.3);
