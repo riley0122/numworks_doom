@@ -46,7 +46,7 @@ std::vector<vertex> generateEdgesFromFace(std::string faceString){
 
     for (int i = 0; i < splitted.size(); i++)
     {
-        vertexes.push_back(splitted[i][0] - '0');
+        vertexes.push_back(atoi(split(splitted[i], '/')[0].c_str()));
     }
 
     std::vector<vertex> results;
