@@ -49,27 +49,33 @@ int main(int argc, char *argv[])
 
         EADK::Display::drawString("Prototype", EADK::Point(0,0), true, White, Black);
 
-        if(kbd.keyDown(EADK::Keyboard::Key::Up)){
+        if (kbd.keyDown(EADK::Keyboard::Key::Up))
+        {
             rotation += 0.1;
-        }else if(kbd.keyDown(EADK::Keyboard::Key::Down)){
+        } else if (kbd.keyDown(EADK::Keyboard::Key::Down))
+        {
             rotation -= 0.1;
         }
 
-        if(kbd.keyDown(EADK::Keyboard::Key::Left)){
+        if (kbd.keyDown(EADK::Keyboard::Key::Left))
+        {
             secondaryRotation += 0.1;
-        }else if(kbd.keyDown(EADK::Keyboard::Key::Right)){
+        } else if (kbd.keyDown(EADK::Keyboard::Key::Right)){
             secondaryRotation -= 0.1;
         }
 
-        if(kbd.keyDown(EADK::Keyboard::Key::One)){
+        if (kbd.keyDown(EADK::Keyboard::Key::One))
+        {
             model = 0;
             rotation = 0;
             secondaryRotation = 0;
-        }else if(kbd.keyDown(EADK::Keyboard::Key::Two)){
+        } else if (kbd.keyDown(EADK::Keyboard::Key::Two))
+        {
             model = 1;
             rotation = 0;
             secondaryRotation = 0;
-        }else if(kbd.keyDown(EADK::Keyboard::Key::Three)){
+        } else if (kbd.keyDown(EADK::Keyboard::Key::Three))
+        {
             model = 2;
             rotation = 0;
             secondaryRotation = 0;
@@ -129,12 +135,14 @@ int main(int argc, char *argv[])
 #include "renderer.h"
 
 // Rounds numbers to 3 decimal points
-float r(float number){
+float r(float number)
+{
     int value = std::round(number * 1000);
     return (float)value / 1000;
 }
 
-UTEST(renderingMaths, globalRelativeConversion){
+UTEST(renderingMaths, globalRelativeConversion)
+{
     renderer::Camera camera;
     camera.pos = {0,0,0};
     camera.rotation = {0,0};
@@ -154,7 +162,8 @@ UTEST(renderingMaths, globalRelativeConversion){
     // ASSERT_NE(point.x, 3);
 }
 
-UTEST(renderingMaths, rotation){
+UTEST(renderingMaths, rotation)
+{
     position point = {1, 2, 3};
 
     // Validation data calculated with
