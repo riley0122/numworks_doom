@@ -43,7 +43,7 @@ The requirements to work on this project are:
 * A (preferably debian based) linux distribution, this can also be WSL (Windows Subsystem for Linux)
 * A working installation of Node.js
 * A working installation of make
-* A working installation of the [embedded ARM toolchain](https://developer.arm.com/Tools%20and%20Software/GNU%20Toolchain). <br /> On debian based systems it can be installed with `# 
+* A working installation of the [embedded ARM toolchain](https://developer.arm.com/Tools%20and%20Software/GNU%20Toolchain). <br /> On debian based systems it can be installed with `#
 apt install gcc-arm-none-eabi`.
 
 You need to have those tools installed to compile this project.
@@ -88,6 +88,13 @@ After the reference, there should be a short description of what you are doing/c
 
 The description comes after the reference and is seperated by a "/".
 
+Branch description must be [the non finite verb phrase](#what-the-hell-is-the-non-finite-verb-phrase) of the [present continuous](https://learnenglish.britishcouncil.org/grammar/english-grammar-reference/present-continuous)
+
+#### What the hell is the non finite verb phrase??
+
+The non-finite verb phrase is a form of a [verb phrase](https://en.wikipedia.org/wiki/Verb_phrase). A verb phrase is basically the sentance without the subject, for example:
+In the sentance "John has finished the work" one verb phrase is "has finished the work". However this still contains a [finite verb](https://en.wikipedia.org/wiki/Finite_verb), namely "has". One of the non-finite verb phrases in this scentance is "finished the work" because it doesnt contain any finite verbs. The only verbs are [non-finite](https://en.wikipedia.org/wiki/Nonfinite_verb).
+
 ### tl;dr
 This is what you need to follow:
 `$ git branch <category/reference/short-description>`
@@ -99,3 +106,25 @@ This is what you need to follow:
 3. You have decided that some code looks messy and want to clean it up `$ git branch refactor/no-ref/cleaning-up-messy-code`
 
 ## Commits
+
+### Types
+
+Your commit must always start with what type of commit it is. You can choose from the following:
+* `FEAT` is for when you are working something and you make a commit for a part you finished.
+* `FIX` is for bugfixes, but also for adding small things you forgot, spelling errors, etc.
+* `CHORE` is for the things you would skip if you could, things like writing this document for example.
+
+### Description
+
+After the type of commit you made, you write a short description of what you did. This is again 2 to 5 words. If you made multiple changes that fall under the same type, you can write 2 (or more) descriptions seperated by a ";".
+
+Commit descriptions must be descriptive of what you did. Commit descriptions must be in the [Past simple](https://learnenglish.britishcouncil.org/grammar/english-grammar-reference/past-simple)
+
+### tl;dr
+Your commit should look something like this:
+`$ git commit -m '<TYPE: did something; did something else>'`.
+
+### Examples
+
+1. You added documentation to undocumented functions: `$ git commit -m 'CHORE: added comments to functionName in file.cpp'`
+2. You added functions that handle 3D rotation: `$ git commit -m 'FEAT: added rotateZ; added roatateY; added rotateX'`
