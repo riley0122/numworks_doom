@@ -120,9 +120,15 @@ After the type of commit you made, you write a short description of what you did
 
 Commit descriptions must be descriptive of what you did. Commit descriptions must be in the [Past simple](https://learnenglish.britishcouncil.org/grammar/english-grammar-reference/past-simple)
 
+### Exceptions
+
+Your commit may have a diffrent name if it is a merge commit. In that case it may have the default merging name. For example: `Merge pull request #26 from riley0122/feature/no-ref/modelGenerator-tool`. Merge commits must have a description stating what changed or what you did if that wasnt clear from the branch name.
+
 ### tl;dr
 Your commit should look something like this:
 `$ git commit -m '<TYPE: did something; did something else>'`.
+
+Unless it's a merge commit, then the default name is fine.
 
 ### Examples
 
