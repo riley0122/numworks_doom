@@ -21,15 +21,15 @@ namespace renderingMaths
         *point = p;
     }
 
-    position rotateX(position point, float angle){
+    position rotateX(position point, float angle) {
         position p;
-        p.y = (point.y * std::cos(angle)) - (std::sin(angle) * point.z);
-        p.z = (point.y * std::sin(angle)) + (std::cos(angle) * point.z);
+        p.y = (point.y * std::cos(angle)) + (point.z * -std::sin(angle));
+        p.z = (point.y * std::sin(angle)) + (point.z * std::cos(angle));
         p.x = point.x;
         return p;
     }
 
-    position rotateY(position point, float angle){
+    position rotateY(position point, float angle) {
         position p;
         p.x = (point.x * std::cos(angle)) + (point.z * std::sin(angle));
         p.z = (point.x * -std::sin(angle)) + (point.z * std::cos(angle));
@@ -37,7 +37,7 @@ namespace renderingMaths
         return p;
     }
 
-    position rotateZ(position point, float angle){
+    position rotateZ(position point, float angle) {
         position p;
         p.x = (point.x * std::cos(angle)) + (point.y * -std::sin(angle));
         p.y = (point.x * std::sin(angle)) + (point.y * std::cos(angle));
@@ -49,7 +49,7 @@ namespace renderingMaths
 namespace renderer
 {
     // Project a single point
-    position2D project(position point, Camera target){
+    position2D project(position point, Camera target) {
         renderingMaths::globalToRelative(&point, target);
         float projectedX = (point.x * FOCAL_LENGTH) / (point.z + FOCAL_LENGTH);
         float projectedY = (point.y * FOCAL_LENGTH) / (point.z + FOCAL_LENGTH);
@@ -61,8 +61,7 @@ namespace renderer
         return {projectedX, projectedY};
     }
 
-    void render_line(position2D points[2], Camera target, EADK::Color colour)
-    {
+    void render_line(position2D points[2], Camera target, EADK::Color colour) {
         float Dx = points[1].x - points[0].x;
         float Dy = points[1].y - points[0].y;
 
@@ -74,9 +73,11 @@ namespace renderer
                 y = points[0].y + Dy * (x - points[0].x) / Dx;
                 EADK::Display::pushRectUniform(EADK::Rect(x, y, 1, 1), colour);
             }
-        }else if(Dx == 0){
+        } else if (Dx == 0)
+	    {
             EADK::Display::pushRectUniform(EADK::Rect(points[0].x, points[0].y < points[1].y ? points[0].y : points[1].y, 1, std::abs(Dy)), colour);
-        }else {
+        } else 
+        {
             float y;
             for(int x = std::floor(points[1].x); x < std::floor(points[0].x); x++)
             {
