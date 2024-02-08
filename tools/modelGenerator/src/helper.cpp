@@ -6,14 +6,13 @@
 
 #define SCALE 15
 
-std::vector<std::string> split(std::string string, char splitter)
-{
+std::vector<std::string> split(std::string string, char splitter) {
     std::vector<std::string> result;
     std::string subString = "";
 
     for (int i = 0; i < string.length(); i++)
     {
-        if(string[i] == splitter)
+        if (string[i] == splitter)
         {
             result.push_back(subString);
             subString = "";
@@ -28,7 +27,7 @@ std::vector<std::string> split(std::string string, char splitter)
     return result;
 }
 
-point generatePoint(std::string string){
+point generatePoint(std::string string) {
     std::vector<std::string> values = split(string, ' ');
 
     float x = atof(values[1].c_str()) * SCALE;
@@ -38,7 +37,7 @@ point generatePoint(std::string string){
     return point{x, y, z};
 }
 
-std::vector<vertex> generateEdgesFromFace(std::string faceString){
+std::vector<vertex> generateEdgesFromFace(std::string faceString) {
     std::vector<std::string> splitted = split(faceString, ' ');
     splitted.erase(splitted.begin());
 
