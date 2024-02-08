@@ -26,6 +26,7 @@ This document is a set of guidelines for you to contribute to the DOOM game for 
 [Styling guide](#style-guide)
 * [Most things](#loops-ifs-classes-and-namespaces)
 * [Functions](#functions-1)
+* [Indentation](#indentation)
 
 # Code of Conduct
 
