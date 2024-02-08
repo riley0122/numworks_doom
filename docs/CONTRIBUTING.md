@@ -21,6 +21,11 @@ This document is a set of guidelines for you to contribute to the DOOM game for 
 [Naming convention](#naming-convention)
 * [Branches](#branches)
 * [Commits](#commits)
+* [Functions](#functions)
+
+[Styling guide](#style-guide)
+* [Most things](#loops-ifs-classes-and-namespaces)
+* [Functions](#functions-1)
 
 # Code of Conduct
 
@@ -137,4 +142,75 @@ Unless it's a merge commit, then the default name is fine.
 
 ## Functions, Classes, etc.
 
-Functions are named in camelCase and must be at least slightly descriptive of what it does. We prefer to use the single responsibility principle, this means that one function does one thing. This is not a requirement more so a preference.
+Functions, Classes, namespaces, etc. are named in camelCase and must be at least slightly descriptive of what it does/contains. 
+
+We prefer to use the single responsibility principle, this means that one function does one thing. This is not a requirement more so a preference.
+
+### Examples
+
+```cpp
+// Rotates a point on the X axis
+void rotateX(position point, float angle){
+    position p;
+    // The rotation maths based on the rotation matrix
+    // (it is in src/renderer.cpp)
+    return p;
+}
+```
+
+
+```cpp
+// Project a single point
+position2D project(position point, Camera target){
+    // perspective projection maths
+    return {projectedX, projectedY};
+}
+```
+
+# Style guide
+
+A simple style guide how things like brackets should be formatted.
+
+## Loops, Ifs, Classes, and Namespaces 
+
+These things should have the brackets open on a new line.
+
+i.e.
+
+```cpp
+namespace something
+{
+    // things
+}
+```
+## Functions
+
+Functions should have brackets inline of the function
+
+i.e.
+
+```cpp
+void doSomething() {
+    // Do whatever
+}
+```
+
+If functions have a return type, they must always have a return statment at the bottom. Even if the function can never get to that point.
+
+i.e.
+
+```cpp
+position getCenter(std::bool nonZero){
+    if(!nonZero)
+    {
+        return {0, 0, 0};
+    } else
+    {
+        return {1, 1, 1};
+    }
+
+    // Function can never get here
+    return {0, 0, 0};
+}
+```
+
