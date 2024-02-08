@@ -134,3 +134,7 @@ Unless it's a merge commit, then the default name is fine.
 
 1. You added documentation to undocumented functions: `$ git commit -m 'CHORE: added comments to functionName in file.cpp'`
 2. You added functions that handle 3D rotation: `$ git commit -m 'FEAT: added rotateZ; added roatateY; added rotateX'`
+
+## Functions, Classes, etc.
+
+Functions are named in camelCase and must be at least slightly descriptive of what it does. We prefer to use the single responsibility principle, this means that one function does one thing. This is not a requirement more so a preference.
