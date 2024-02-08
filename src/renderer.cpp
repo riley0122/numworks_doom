@@ -74,10 +74,10 @@ namespace renderer
                 EADK::Display::pushRectUniform(EADK::Rect(x, y, 1, 1), colour);
             }
         } else if (Dx == 0)
-	{
+	    {
             EADK::Display::pushRectUniform(EADK::Rect(points[0].x, points[0].y < points[1].y ? points[0].y : points[1].y, 1, std::abs(Dy)), colour);
         } else 
-	{
+        {
             float y;
             for(int x = std::floor(points[1].x); x < std::floor(points[0].x); x++)
             {

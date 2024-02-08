@@ -214,3 +214,6 @@ position getCenter(std::bool nonZero){
 }
 ```
 
+## Indentation
+
+We use a tab space of 4 space characters.
