@@ -19,8 +19,7 @@
 #include "cone.h"
 #include "suzanne.h"
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
     bool running = true;
 
     renderer::Camera camera;
@@ -162,7 +161,7 @@ UTEST(renderingMaths, globalRelativeConversion)
     // ASSERT_NE(point.x, 3);
 }
 
-UTEST(renderingMaths, rotation)
+UTEST(renderingMaths, rotation) 
 {
     position point = {1, 2, 3};
 
