@@ -10,6 +10,19 @@
 #include "eadk.h"
 #include <iostream>
 
+#ifdef GRAPHICS_ENABLED
+#include <SDL2/SDL.h>
+
+SDL_Window* win;
+
+void initGraphics(){
+    if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
+        printf("error initializing SDL: %s\n", SDL_GetError());
+    }
+    win = SDL_CreateWindow("DOOM", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 320, 240, 0);
+}
+#endif
+
 eadk_keyboard_state_t eadk_keyboard_scan() {
     #ifdef VERBOSE
     std::cout << "[eadk.cpp] eadk_keyboard_scan() called" << std::endl;

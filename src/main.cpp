@@ -39,6 +39,10 @@ int main(int argc, char *argv[])
     */
     int model = 0;
 
+    #ifdef GRAPHICS_ENABLED
+    initGraphics();
+    #endif
+
     while (running)
     {
         // exit condition

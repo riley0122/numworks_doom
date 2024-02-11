@@ -21,7 +21,7 @@ mkdir -p dist
 
 if [ "$response" == "y" ] || [ "$response" == "Y" ]; then
     echo "Building WITH graphics"
-    g++ -DDESTKTOP_BUILD -DGRAPHICS_ENABLED -std=c++11 -Wall -o dist/DOOM $(find ../src -name '*.cpp')
+    g++ -DDESTKTOP_BUILD -DGRAPHICS_ENABLED -std=c++11 -Wall -o dist/DOOM $(find ../src -name '*.cpp') -lSDL2
 else
     echo "Building WITHOUT graphics"
     g++ -DDESTKTOP_BUILD -std=c++11 -Wall -o dist/DOOM $(find ../src -name '*.cpp')

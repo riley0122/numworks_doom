@@ -5,6 +5,11 @@
 #include <stddef.h>
 #include <stdint.h>
 
+// Graphics mode
+#ifdef GRAPHICS_ENABLED
+void initGraphics();
+#endif
+
 // Types and constants
 
 typedef uint16_t eadk_color_t;
