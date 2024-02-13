@@ -10,6 +10,7 @@
 #include <stdlib.h>
 
 #include <cmath>
+#include <vector>
 
 #define FOCAL_LENGTH 30
 #define PI 3.141592653589793238462643383279502884197
@@ -48,6 +49,28 @@ namespace renderingMaths
         p.y = (point.x * std::sin(angle)) + (point.y * std::cos(angle));
         p.z = point.z;
         return p;
+    }
+
+    int countIntersections(position2D point, std::vector<vertex> edges, std::vector<position> points, renderer::Camera camera) {
+        // loop over each edge
+        int intersections = 0;
+        for (vertex v : edges)
+        {
+            position2D p1 = renderer::project(points[v.start], camera);
+            position2D p2 = renderer::project(points[v.end], camera);
+
+            if (point.y < p1.y == point.y < p2.y)
+            {
+                continue;
+            }
+
+            if (point.x < p1.x + ((point.y - p1.y) / (p2.y - p1.y)) * (p2.x - p1.x))
+            {
+                ++intersections;
+            }
+        }
+        
+        return intersections;
     }
 } // renderingMaths
 
