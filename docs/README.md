@@ -1,6 +1,8 @@
 [![Build](https://github.com/riley0122/numworks_doom/actions/workflows/build.yml/badge.svg)](https://github.com/riley0122/numworks_doom/actions/workflows/build.yml)   [![Tests](https://github.com/riley0122/numworks_doom/actions/workflows/test.yml/badge.svg)](https://github.com/riley0122/numworks_doom/actions/workflows/test.yml)   [![Build tools](https://github.com/riley0122/numworks_doom/actions/workflows/build_tools.yml/badge.svg)](https://github.com/riley0122/numworks_doom/actions/workflows/build_tools.yml)
 # numworks DOOM
 
+[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)
+
 This is a simple DOOM clone made from scratch for the Numworks calculator.
 
 ## Building
