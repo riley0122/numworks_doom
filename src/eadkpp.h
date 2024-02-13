@@ -1,3 +1,7 @@
+/*
+  Originally distributed under BSD-3 clause.
+  Copyright (c) 2021-2022 NumWorks. All rights reserved.
+*/
 #ifndef EADKPP_H
 #define EADKPP_H
 

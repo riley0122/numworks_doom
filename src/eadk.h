@@ -1,3 +1,7 @@
+/*
+  Originally distributed under BSD-3 clause.
+  Copyright (c) 2021-2022 NumWorks. All rights reserved.
+*/
 #ifndef EADK_H
 #define EADK_H
 

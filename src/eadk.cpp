@@ -4,9 +4,12 @@
 
     these functions will say when they are called, and return a dummy value.
 
+    Originally distributed under BSD-3 clause.
+    Copyright (c) 2021-2022 NumWorks. All rights reserved.
+
     This Source Code Form is subject to the terms of the Mozilla Public
-License, v. 2.0. If a copy of the MPL was not distributed with this
-file, You can obtain one at https://mozilla.org/MPL/2.0/.
+    License, v. 2.0. If a copy of the MPL was not distributed with this
+    file, You can obtain one at https://mozilla.org/MPL/2.0/.
 */
 #include <stdbool.h>
 #include <stddef.h>

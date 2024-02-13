@@ -4,7 +4,6 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 #ifndef TEST
-#include "display.h"
 #include "eadkpp.h"
 #include "palette.h"
 #include "eadk_vars.h"
