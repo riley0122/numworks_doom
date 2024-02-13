@@ -26,4 +26,5 @@ namespace renderingMaths
     position rotateY(position point, float angle);
     position rotateZ(position point, float angle);
     int countIntersections(position2D point, std::vector<vertex> edges, std::vector<position> points, renderer::Camera camera);
+    std::vector<std::vector<vertex>> getFaces(std::vector<vertex> edges);
 } // namespace renderingMaths

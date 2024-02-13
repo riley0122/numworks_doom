@@ -72,6 +72,37 @@ namespace renderingMaths
         
         return intersections;
     }
+
+    std::vector<std::vector<vertex>> getFaces(std::vector<vertex> edges) {
+        std::vector<std::vector<vertex>> faces;
+        for (vertex v : edges)
+        {
+            int index;
+            bool found = false;
+            for (int i = 0; i < faces.size(); ++i)
+            {
+                for (vertex a : faces[i])
+                {
+                    if(v.start == a.end || v.start == a.end || v.end == a.start || v.end == a.end)
+                    {
+                        index = i;
+                        found = true;
+                    }
+                }
+            }
+
+            if (!found)
+            {
+                std::vector<vertex> face;
+                face.push_back(v);
+                faces.push_back(face);
+                continue;
+            }
+
+            faces[index].push_back(v);
+        }
+        return faces;
+    }
 } // renderingMaths
 
 namespace renderer
