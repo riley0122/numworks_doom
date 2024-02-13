@@ -9,6 +9,22 @@
   Note: The 'LICENSE' file in the root directory of the project covers
   the rest of the project, and this notice applies specifically to this
   component within the "tools" directory.
+
+    modelGenerator: generates header files out of 3D models.
+    Copyright (C) 2024 contributers
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 #include <iostream>
 #include <fstream>
@@ -18,6 +34,7 @@
 #include "helper.h"
 
 int main(int argc, char *argv[]) {
+    std::cout << "numworks_doom/tools/modelGenerator Copyright (C) 2024 contributors\nThis program comes with ABSOLUTELY NO WARRANTY; This program is licensed under the GPL license";
     if (argc < 3)
     {
         std::cout << "usage: " << argv[0] << " [input file (.obj)] [output file (.h/.hpp)]\n";
