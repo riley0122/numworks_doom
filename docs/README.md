@@ -16,3 +16,9 @@ And you can run it on a calculator connected to your computer with
 `
 make run
 `.
+
+## License
+
+This project is licensed under the [MPL 2.0 license](https://mozilla.org/MPL/2.0/)
+
+Any project, file, or component in the tools directory is sub licensed under the [GPL 3.0 license](https://www.gnu.org/licenses/gpl-3.0.html)
