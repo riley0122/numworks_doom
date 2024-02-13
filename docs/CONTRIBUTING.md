@@ -184,6 +184,18 @@ namespace something
     // things
 }
 ```
+
+if statements and similar things should also be seperated from their condition with a space.
+
+i.e.
+
+```cpp
+if (condition)
+{
+    // something
+}
+```
+
 ## Functions
 
 Functions should have brackets inline of the function
