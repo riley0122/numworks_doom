@@ -1,3 +1,6 @@
+⚠️ This is an archive, because it will no longer be maintained. ⚠️
+⚠️ A new project, similar to this can be found at [riley0122/nw_doom](https://github.com/riley0122/nw_doom) ⚠️
+
 [![Build](https://github.com/riley0122/numworks_doom/actions/workflows/build.yml/badge.svg)](https://github.com/riley0122/numworks_doom/actions/workflows/build.yml)   [![Tests](https://github.com/riley0122/numworks_doom/actions/workflows/test.yml/badge.svg)](https://github.com/riley0122/numworks_doom/actions/workflows/test.yml)   [![Build tools](https://github.com/riley0122/numworks_doom/actions/workflows/build_tools.yml/badge.svg)](https://github.com/riley0122/numworks_doom/actions/workflows/build_tools.yml)
 # numworks DOOM
 
